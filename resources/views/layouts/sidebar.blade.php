@@ -3,7 +3,7 @@
 <head>
     @include('partials.head')
 </head>
-<body>
+<body class="font-sans">
     
     <div class="h-screen flex overflow-hidden bg-gray-100">
         <!-- Off-canvas menu for mobile -->
