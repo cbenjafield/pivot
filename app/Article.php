@@ -22,4 +22,9 @@ class Article extends Model
     {
         return $this->belongsTo(Article::class);
     }
+
+    public function meta()
+    {
+        return $this->hasMany(Meta::class);
+    }
 }
