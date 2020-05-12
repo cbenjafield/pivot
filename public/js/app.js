@@ -34183,6 +34183,23 @@ var app = new Vue({
   data: {
     isUserOpen: false,
     isNavOpen: false
+  },
+  methods: {
+    submitForm: function submitForm(selector) {
+      var _this = this;
+
+      this.$nextTick(function () {
+        _this.$nextTick(function () {
+          console.log(selector);
+          console.log(document.querySelector(selector));
+        });
+      });
+    },
+    closeAlert: function closeAlert(target) {
+      this.$nextTick(function () {
+        target.closest('.alert').remove();
+      });
+    }
   }
 });
 

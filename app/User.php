@@ -37,8 +37,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Define the user's relationship to their sites.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function sites()
     {
         return $this->hasMany(Site::class);
+    }
+
+    /**
+     * Define the user's relationship to organisations.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function organisations()
+    {
+        return $this->hasMany(Organisation::class);
     }
 }

@@ -12,5 +12,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', 'DashboardController@index');
+Route::get('logout', 'Auth\LoginController@logout');
 
-Route::resource('organisations', 'OrganisationController')->names('organisations');
+Route::group(['middleware' => 'password.confirm'], function () {
+    Route::any('organisations/{organisation}/delete', 'OrganisationController@destroy')->name('organisations.destroy');
+});
+
+Route::resource('organisations', 'OrganisationController')
+                        ->names('organisations')
+                        ->except(['edit', 'destroy']);

@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Http\Requests\Organisations\CreateRequest;
+use App\Http\Requests\Organisations\OrganisationRequest;
 use App\Traits\HasUrl;
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,25 +33,61 @@ class Organisation extends Model
      */
 
     /**
+     * Get the fillable request attributes from the request.
+     * 
+     * @param  \App\Http\Requests\Organisations\OrganisationRequest  $request
+     * @return array
+     */
+    public static function fillableRequestAttributes(OrganisationRequest $request, array $params = [])
+    {
+        return array_merge($request->only([
+            'name',
+            'description',
+            'street_address',
+            'locality',
+            'city',
+            'postcode',
+        ]), $params);
+    }
+
+    /**
      * Create a new organisation from the user's request,
      * then redirect them to the edit organisation page.
      * 
-     * @param  \App\Http\Requests\Organisations\CreateRequest $request
+     * @param  \App\Http\Requests\Organisations\OrganisationRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public static function createFromUserRequest(CreateRequest $request)
+    public static function createFromUserRequest(OrganisationRequest $request)
     {
         $organisation = auth()->user()
                                 ->organisations()
-                                ->create($request->only([
-                                    'name',
-                                    'description',
-                                    'street_address',
-                                    'locality',
-                                    'city',
-                                    'postcode',
-                                ]));
+                                ->create(static::fillableRequestAttributes($request));
         
-        return redirect()->route('organisations.show', [$organisation->id]);
+        return redirect()->route('organisations.show', $organisation->id);
+    }
+
+    /**
+     * Update an organisation from the user's request,
+     * then redirect them to the back to the edit
+     * organisation page.
+     * 
+     * @param  \App\Http\Requests\Organisations\OrganisationRequest  $request
+     */
+    public function updateFromUserRequest(OrganisationRequest $request)
+    {
+        $this->update(static::fillableRequestAttributes($request));
+
+        return redirect()->route('organisations.show', $this->id)
+                            ->with('success', 'The organisation has been updated.');
+    }
+
+    /**
+     * Get the first character of the organisation name.
+     * 
+     * @return string
+     */
+    public function getInitialAttribute()
+    {
+        return strtoupper($this->name[0]);
     }
 }

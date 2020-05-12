@@ -13,5 +13,20 @@ const app = new Vue({
     data: {
         isUserOpen: false,
         isNavOpen: false
+    },
+    methods: {
+        submitForm(selector) {
+            this.$nextTick(() => {
+                this.$nextTick(() => {
+                    console.log(selector);
+                    console.log(document.querySelector(selector));
+                });
+            });
+        },
+        closeAlert(target) {
+            this.$nextTick(() => {
+                target.closest('.alert').remove();
+            });
+        }
     }
 });

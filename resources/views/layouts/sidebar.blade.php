@@ -59,9 +59,8 @@
                                     v-if="isUserOpen"
                                 >
                                     <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150" role="menuitem">Your Profile</a>
                                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150" role="menuitem">Settings</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150" role="menuitem">Sign out</a>
+                                        <a href="{{ url('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition ease-in-out duration-150" role="menuitem">Sign out</a>
                                     </div>
                                 </div>
                             </transition>
@@ -77,6 +76,7 @@
             @endif
                 @yield('content-header')
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                    @include('partials.alerts')
                     @yield('content')
                 </div>
             </main>
