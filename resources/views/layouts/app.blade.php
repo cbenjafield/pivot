@@ -9,5 +9,7 @@
         @yield('content')
 
     </div>
+
+    @include('partials.foot')
 </body>
 </html>
