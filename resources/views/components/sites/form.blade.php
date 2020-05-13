@@ -1,6 +1,7 @@
 <form action="{{ $action }}" method="POST"{!! !empty($id) ? ' id="' . $id . '"' : '' !!}{!! !empty($ref) ? ' ref="' . $ref . '"' : '' !!}>
     <div class="max-w-4xl mx-auto shadow sm:rounded-md sm:overflow-hidden mt-6">
         <div class="px-4 py-5 bg-white sm:p-6">
+            @include('partials.validation')
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
                 <label for="title" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
                     Title of Website
@@ -13,6 +14,20 @@
                         <span class="text-red-600 text-xs mt-1 block">{{ $message }}</span>
                     @enderror
                     <p class="mt-2 text-sm text-gray-500">Give this website an identifiable title e.g. Bruce's Barbers.</p>
+                </div>
+            </div>
+            <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                <label for="organisation" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                    Organisation
+                </label>
+                <div class="mt-1 sm:mt-0 sm:col-span-2">
+                    <div class="max-w-xs rounded-md shadow-sm">
+                        <select id="organisation" name="organisation_id" class="block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                            @foreach($organisations as $org)
+                            <option value="{{ $org->id }}"{{ $org->id == old('organisation_id', $site->organisation_id) ? 'selected' : '' }}>{{ $org->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
@@ -88,7 +103,7 @@
                                 <div class="max-w-lg">
                                     <div class="relative flex items-start">
                                         <div class="absolute flex items-center h-5">
-                                            <input id="uses_www" name="uses_www" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"{{ old('uses_www', $site->uses_www) == 1 ? 'checked' : '' }} />
+                                            <input id="uses_www" name="uses_www" type="checkbox" value="1" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"{{ old('uses_www', $site->uses_www) == 1 ? 'checked' : '' }} />
                                         </div>
                                         <div class="pl-7 text-sm leading-5">
                                             <label for="uses_www" class="font-medium text-gray-700">Uses WWW</label>
@@ -98,7 +113,7 @@
                                     <div class="mt-4">
                                         <div class="relative flex items-start">
                                             <div class="absolute flex items-center h-5">
-                                                <input id="uses_https" name="uses_https" type="checkbox" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"{{ old('uses_https', $site->uses_https) == 1 ? 'checked' : '' }} />
+                                                <input id="uses_https" name="uses_https" type="checkbox" value="1" class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"{{ old('uses_https', $site->uses_https) == 1 ? 'checked' : '' }} />
                                             </div>
                                             <div class="pl-7 text-sm leading-5">
                                                 <label for="uses_https" class="font-medium text-gray-700">Uses HTTPS</label>

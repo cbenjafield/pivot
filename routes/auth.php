@@ -16,6 +16,7 @@ Route::get('logout', 'Auth\LoginController@logout');
 
 Route::group(['middleware' => 'password.confirm'], function () {
     Route::any('organisations/{organisation}/delete', 'OrganisationController@destroy')->name('organisations.destroy');
+    Route::any('websites/{website}/delete', 'SiteController@destroy')->name('sites.destroy');
 });
 
 Route::resource('organisations', 'OrganisationController')

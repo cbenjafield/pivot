@@ -2,13 +2,14 @@
 
 namespace App;
 
-use App\Http\Requests\Organisations\OrganisationRequest;
-use App\Traits\HasUrl;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Requests\Organisations\OrganisationRequest;
+use App\Traits\CreatesFromRequest;
+use App\Traits\HasUrl;
 
 class Organisation extends Model
 {
-    use HasUrl;
+    use HasUrl, CreatesFromRequest;
 
     protected $guarded = [];
 
@@ -48,37 +49,6 @@ class Organisation extends Model
             'city',
             'postcode',
         ]), $params);
-    }
-
-    /**
-     * Create a new organisation from the user's request,
-     * then redirect them to the edit organisation page.
-     * 
-     * @param  \App\Http\Requests\Organisations\OrganisationRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public static function createFromUserRequest(OrganisationRequest $request)
-    {
-        $organisation = auth()->user()
-                                ->organisations()
-                                ->create(static::fillableRequestAttributes($request));
-        
-        return redirect()->route('organisations.show', $organisation->id);
-    }
-
-    /**
-     * Update an organisation from the user's request,
-     * then redirect them to the back to the edit
-     * organisation page.
-     * 
-     * @param  \App\Http\Requests\Organisations\OrganisationRequest  $request
-     */
-    public function updateFromUserRequest(OrganisationRequest $request)
-    {
-        $this->update(static::fillableRequestAttributes($request));
-
-        return redirect()->route('organisations.show', $this->id)
-                            ->with('success', 'The organisation has been updated.');
     }
 
     /**

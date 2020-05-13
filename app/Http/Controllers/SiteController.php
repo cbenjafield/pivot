@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Sites\CreateRequest;
+use App\Http\Requests\Sites\UpdateRequest;
 use App\Site;
 use App\Traits\HasUrl;
 use App\Traits\ResourceViews;
@@ -33,4 +35,51 @@ class SiteController extends Controller
         return $this->view('create');
     }
 
+    /**
+     * Commit the new website to storage.
+     * 
+     * @param  \App\Http\Requests\Sites\CreateRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(CreateRequest $request)
+    {
+        return Site::createFromUserRequest($request);
+    }
+
+    /**
+     * Update a website.
+     * 
+     * @param  \App\Http\Requests\Sites\UpdateRequest  $request
+     * @param  \App\Site  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function update(UpdateRequest $request, Site $website)
+    {
+        return $website->updateFromUserRequest($request);
+    }
+
+    /**
+     * Show a website.
+     * 
+     * @param  \App\Site  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Site $website)
+    {
+        return $this->view('show', compact('website'));
+    }
+
+    /**
+     * Delete a website from storage
+     * 
+     * @param  \App\Site  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Site $website)
+    {
+        $website->delete();
+
+        return redirect()->route('sites.index')
+                                ->with('success', 'The website was deleted.');
+    }
 }
