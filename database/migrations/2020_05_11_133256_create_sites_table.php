@@ -21,6 +21,11 @@ class CreateSitesTable extends Migration
             $table->string('logo_text')->nullable();
             $table->string('tld');
             $table->text('description')->nullable();
+            $table->string('logo_path')->nullable();
+            $table->string('street_address')->nullable();
+            $table->string('locality')->nullable();
+            $table->string('city')->nullable();
+            $table->string('postcode')->nullable();
             $table->boolean('uses_www')->default(1);
             $table->boolean('uses_https')->default(1);
             $table->string('theme')->default('default');

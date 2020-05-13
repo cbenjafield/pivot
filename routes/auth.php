@@ -21,3 +21,8 @@ Route::group(['middleware' => 'password.confirm'], function () {
 Route::resource('organisations', 'OrganisationController')
                         ->names('organisations')
                         ->except(['edit', 'destroy']);
+
+
+Route::resource('websites', 'SiteController')
+                        ->names('sites')
+                        ->except(['edit', 'destroy']);
