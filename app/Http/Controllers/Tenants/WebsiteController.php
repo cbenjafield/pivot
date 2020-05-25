@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Subdomain;
+namespace App\Http\Controllers\Tenants;
 
 use App\Http\Controllers\Controller;
 use App\Site;
