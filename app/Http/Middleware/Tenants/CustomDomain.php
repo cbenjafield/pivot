@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware\Tennants;
+namespace App\Http\Middleware\Tenants;
 
 use App\Site;
 use Closure;

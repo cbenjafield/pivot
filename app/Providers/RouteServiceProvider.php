@@ -43,13 +43,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapSubdomainRoutes();
-
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
 
         $this->mapAuthRoutes();
+
+        $this->mapTenantRoutes();
     }
 
     /**
@@ -102,15 +102,11 @@ class RouteServiceProvider extends ServiceProvider
      * 
      * @return void
      */
-    protected function mapSubdomainRoutes()
+    protected function mapTenantRoutes()
     {
-        Route::group([
-            'middleware' => 'web',
-            'namespace' => $this->namespace.'\Subdomain',
-        ], function (Router $router) {
-            $router->pattern('domain', '[a-z0-9.\-]+');
-
-            require base_path('routes/tennants.php');
-        });
+        Route::middleware(['web', 'domain'])
+                ->namespace("{$this->namespace}\Tenants")
+                ->name('tenants.')
+                ->group(base_path('routes/tenant.php'));
     }
 }
