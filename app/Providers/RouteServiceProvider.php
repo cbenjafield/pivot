@@ -104,7 +104,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapSubdomainRoutes()
     {
         Route::middleware(['web'])
-                ->domain('{website}.'.env('APP_DOMAIN'))
+                ->domain('{website}')
                 ->namespace($this->namespace . '\Subdomain')
                 ->group(base_path('routes/subdomain.php'));
     }
