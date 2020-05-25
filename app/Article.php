@@ -9,6 +9,10 @@ class Article extends Model
 {
     protected $guarded = [];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     protected static function booted()
     {
         static::saving(function ($article) {
