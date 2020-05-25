@@ -42,6 +42,8 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        $this->mapSubdomainRoutes();
+        
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
@@ -59,6 +61,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapWebRoutes()
     {
         Route::middleware('web')
+            ->domain(env('APP_DOMAIN'))
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
     }
@@ -88,7 +91,21 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAuthRoutes()
     {
         Route::middleware(['web', 'auth'])
+                ->domain(env('APP_DOMAIN'))
                 ->namespace($this->namespace)
                 ->group(base_path('routes/auth.php'));
+    }
+
+    /**
+     * Define the sub-domain routes for the application.
+     * 
+     * @return void
+     */
+    protected function mapSubdomainRoutes()
+    {
+        Route::middleware(['web'])
+                ->domain('{website}.pivot.hs')
+                ->namespace($this->namespace . '\Subdomain')
+                ->group(base_path('routes/subdomain.php'));
     }
 }
