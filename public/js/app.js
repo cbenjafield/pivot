@@ -1908,8 +1908,6 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var medium_editor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! medium-editor */ "./node_modules/medium-editor/dist/js/medium-editor.js");
-/* harmony import */ var medium_editor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(medium_editor__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1963,7 +1961,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['value'],
   data: function data() {
@@ -1985,7 +1998,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.editorElement = this.$refs.editor;
-      this.editor = new medium_editor__WEBPACK_IMPORTED_MODULE_0___default.a(this.editorElement, {
+      this.editor = new MediumEditor(this.editorElement, {
         autoLink: true,
         toolbar: {
           allowMultiParagraphSelection: true
@@ -1996,7 +2009,15 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       this.editor.subscribe('editableInput', function (event, editorElement) {
+        _this2.editor.saveSelection();
+
         _this2.updateEditorContent(_this2.editor.getContent());
+      });
+      this.editor.subscribe('editableClick', function () {
+        _this2.editor.saveSelection();
+      });
+      this.editor.subscribe('focus', function () {
+        setTimeout(_this2.editor.restoreSelection.bind(_this2.editor), 1);
       });
     },
     updateEditorContent: function updateEditorContent(value) {
@@ -2105,7 +2126,9 @@ __webpack_require__.r(__webpack_exports__);
       editor: null,
       colText: '1/2,1/2',
       className: null,
-      selection: null
+      selection: null,
+      element: null,
+      isRoot: false
     };
   },
   created: function created() {
@@ -2125,11 +2148,16 @@ __webpack_require__.r(__webpack_exports__);
     open: function open(payload) {
       if (typeof payload == 'undefined') {
         this.editor = this.$root.$refs.ArticleEditor.editor;
+        this.element = this.$root.$refs.ArticleEditor;
+        this.isRoot = true;
       } else {
         this.editor = payload.editor;
+        this.element = payload.editorElement;
+        this.isRoot = false;
       }
 
       this.selection = this.editor.exportSelection();
+      this.editor.saveSelection();
       this.isOpen = true;
     },
     close: function close() {
@@ -2139,8 +2167,13 @@ __webpack_require__.r(__webpack_exports__);
     insert: function insert() {
       var _this = this;
 
+      /* this.editor.pasteHTML(, {
+          cleanAttrs: []
+      }, true); */
       this.$nextTick(function () {
-        _this.editor.pasteHTML(_this.$refs.preview.innerHTML + "\n ", {
+        _this.editor.restoreSelection();
+
+        _this.editor.pasteHTML(_this.$refs.preview.innerHTML + "\n", {
           cleanAttrs: []
         });
       });
@@ -2287,7 +2320,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".medium-editor-element {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  padding: 1.5rem;\n}\n.medium-editor-element:focus {\n  outline: 0;\n}\n.medium-editor-element a {\n  color: #5850ec;\n}\n.medium-editor-element h2, .medium-editor-element h3, .medium-editor-element h4, .medium-editor-element h5, .medium-editor-element h6 {\n  font-weight: 700;\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n}\n.medium-editor-element h2:first-child, .medium-editor-element h3:first-child, .medium-editor-element h4:first-child, .medium-editor-element h5:first-child, .medium-editor-element h6:first-child {\n  margin-top: 0;\n}\n.medium-editor-element h2 {\n  font-size: 1.5rem;\n}\n.medium-editor-element p {\n  margin-bottom: 0.75rem;\n  line-height: 1.625;\n}\n.medium-editor-element p:last-of-type {\n  margin-bottom: 0;\n}\n.medium-editor-element .row {\n  border-top-width: 2px;\n  border-bottom-width: 2px;\n  --border-opacity: 1;\n  border-color: #e5e7eb;\n  border-color: rgba(229, 231, 235, var(--border-opacity));\n  border-style: dashed;\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n}\n.editor-wrapper {\n  top: 8rem;\n}\n.editor-wrapper .medium-editor-placeholder:after {\n  color: #8da2fb;\n}", ""]);
+exports.push([module.i, ".medium-editor-element {\n  position: absolute;\n  height: 100%;\n  width: 100%;\n  top: 0;\n  left: 0;\n  padding: 1.5rem;\n}\n.medium-editor-element:focus {\n  outline: 0;\n}\n.medium-editor-element a {\n  color: #5850ec;\n}\n.medium-editor-element h2, .medium-editor-element h3, .medium-editor-element h4, .medium-editor-element h5, .medium-editor-element h6 {\n  font-weight: 700;\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n}\n.medium-editor-element h2:first-child, .medium-editor-element h3:first-child, .medium-editor-element h4:first-child, .medium-editor-element h5:first-child, .medium-editor-element h6:first-child {\n  margin-top: 0;\n}\n.medium-editor-element h2 {\n  font-size: 1.5rem;\n}\n.medium-editor-element p {\n  margin-bottom: 0.75rem;\n  line-height: 1.625;\n}\n.medium-editor-element p:last-of-type {\n  margin-bottom: 0;\n}\n.medium-editor-element .row {\n  border-top-width: 2px;\n  border-bottom-width: 2px;\n  --border-opacity: 1;\n  border-color: #e5e7eb;\n  border-color: rgba(229, 231, 235, var(--border-opacity));\n  border-style: dashed;\n  margin-top: 1rem;\n  margin-bottom: 1rem;\n}\n.medium-editor-element .row .column {\n  position: relative;\n}\n.medium-editor-element .row .column:before {\n  border: 1px dotted #e5e7eb;\n  position: absolute;\n  top: 0;\n  left: 1.25rem;\n  right: 1.25rem;\n  bottom: 0;\n  content: \" \";\n  display: block;\n}\n.editor-wrapper {\n  top: 8rem;\n}\n.editor-wrapper .medium-editor-placeholder:after {\n  color: #8da2fb;\n}", ""]);
 
 // exports
 
@@ -31448,7 +31481,7 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "row flex items-center flex-wrap -mx-6 py-4",
+                      staticClass: "row flex items-start flex-wrap -mx-6 py-4",
                       class: _vm.className
                     },
                     _vm._l(_vm.cols, function(col, index) {
@@ -44113,6 +44146,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 
 try {
   window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
+  window.MediumEditor = __webpack_require__(/*! medium-editor */ "./node_modules/medium-editor/dist/js/medium-editor.js");
 } catch (e) {}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

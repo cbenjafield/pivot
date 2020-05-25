@@ -8,6 +8,7 @@ window._ = require('lodash');
 
 try {
     window.Popper = require('popper.js').default;
+    window.MediumEditor = require('medium-editor');
 } catch (e) {}
 
 /**

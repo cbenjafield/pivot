@@ -38,6 +38,22 @@
 
     .row {
         @apply border-t-2 border-b-2 border-gray-200 border-dashed my-4;
+
+        .column {
+            position: relative;
+
+            &:before {
+                border: 1px dotted theme('colors.gray.200');
+                position: absolute;
+                top: 0;
+                left: theme('padding.5');
+                right: theme('padding.5');
+                bottom: 0;
+                content: " ";
+                display: block;
+            }
+        }
+
     }
 }
 
@@ -52,8 +68,6 @@
 }
 </style>
 <script>
-import MediumEditor from 'medium-editor'
-
 export default {
     props: [
         'value'
@@ -86,7 +100,16 @@ export default {
             });
 
             this.editor.subscribe('editableInput', (event, editorElement) => {
+                this.editor.saveSelection();
                 this.updateEditorContent(this.editor.getContent());
+            });
+
+            this.editor.subscribe('editableClick', () => {
+                this.editor.saveSelection();
+            });
+
+            this.editor.subscribe('focus', () => {
+                setTimeout(this.editor.restoreSelection.bind(this.editor), 1);
             });
         },
         updateEditorContent(value) {

@@ -49,7 +49,7 @@
             <div class="py-6">
                 <div class="text-sm font-bold text-gray-600 mb-2">Preview</div>
                 <div class="preview px-6" ref="preview">
-                    <div class="row flex items-center flex-wrap -mx-6 py-4" :class="className">
+                    <div class="row flex items-start flex-wrap -mx-6 py-4" :class="className">
                         <div class="column px-6" :class="`md:w-${col}`" v-for="(col, index) in cols" :key="index">
                             <p>Enter content here...</p>
                         </div>
@@ -88,7 +88,9 @@ export default {
             editor: null,
             colText: '1/2,1/2',
             className: null,
-            selection: null
+            selection: null,
+            element: null,
+            isRoot: false
         };
     },
     created() {
@@ -110,11 +112,16 @@ export default {
         open(payload) {
             if(typeof payload == 'undefined') {
                 this.editor = this.$root.$refs.ArticleEditor.editor
+                this.element = this.$root.$refs.ArticleEditor
+                this.isRoot = true
             } else {
-                this.editor = payload.editor;
+                this.editor = payload.editor
+                this.element = payload.editorElement
+                this.isRoot = false
             }
 
             this.selection = this.editor.exportSelection();
+            this.editor.saveSelection();
             
             this.isOpen = true;
         },
@@ -123,8 +130,12 @@ export default {
             this.colText = '1/2,1/2';
         },
         insert() {
+            /* this.editor.pasteHTML(, {
+                cleanAttrs: []
+            }, true); */
             this.$nextTick(() => {
-                this.editor.pasteHTML(this.$refs.preview.innerHTML + "\n ", {
+                this.editor.restoreSelection();
+                this.editor.pasteHTML(this.$refs.preview.innerHTML + "\n", {
                     cleanAttrs: []
                 });
             });
