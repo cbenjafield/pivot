@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
 class RouteServiceProvider extends ServiceProvider
@@ -103,9 +104,13 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapSubdomainRoutes()
     {
-        Route::middleware(['web'])
-                ->domain('{website}')
-                ->namespace($this->namespace . '\Subdomain')
-                ->group(base_path('routes/subdomain.php'));
+        Route::group([
+            'middleware' => 'web',
+            'namespace' => $this->namespace.'\Subdomain',
+        ], function (Router $router) {
+            $router->pattern('domain', '[a-z0-9.\-]+');
+
+            require base_path('routes/tennants.php');
+        });
     }
 }
