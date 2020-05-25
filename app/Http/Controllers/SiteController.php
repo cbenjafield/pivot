@@ -84,4 +84,18 @@ class SiteController extends Controller
         return redirect()->route('sites.index')
                                 ->with('success', 'The website was deleted.');
     }
+
+    public function updateDetails(Site $website)
+    {
+        $this->validate(request(), [
+            'home_page_id' => ['required', 'integer', 'exists:articles,id'],
+        ]);
+
+        $website->update(request()->only([
+            'home_page_id'
+        ]));
+
+        return back()
+                    ->with('success', 'Successfully saved.');
+    }
 }
