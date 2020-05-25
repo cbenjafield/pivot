@@ -18,12 +18,13 @@ class CreateArticlesTable extends Migration
             $table->unsignedBigInteger('site_id');
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->text('content');
-            $table->unsignedInteger('read_length');
+            $table->text('content')->nullable();
+            $table->unsignedInteger('read_length')->nullable();
             $table->string('slug');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->string('type')->default('page');
             $table->string('status')->default('draft');
+            $table->unsignedInteger('parent_id')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
@@ -32,8 +33,8 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('article_id');
             $table->string('key');
-            $table->text('value');
-            $table->boolean('should_autoload');
+            $table->text('value')->nullable();
+            $table->boolean('should_autoload')->default(1);
             $table->timestamps();
         });
     }

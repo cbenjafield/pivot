@@ -27,7 +27,7 @@ class CreateRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['sometimes', 'string', 'max:600'],
+            'description' => ['sometimes', 'nullable', 'string', 'max:600'],
             'street_address' => ['sometimes', 'required_with:postcode', 'nullable', 'max:255'],
             'locality' => ['sometimes', 'nullable', 'max:255'],
             'city' => ['sometimes', 'nullable', 'max:255'],

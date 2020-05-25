@@ -24,6 +24,9 @@ Route::resource('organisations', 'OrganisationController')
                         ->except(['edit', 'destroy']);
 
 
+Route::resource('websites/{website}/articles', 'ArticleController');
+Route::put('websites/{website}/details', 'SiteController@updateDetails')->name('sites.details');
+
 Route::resource('websites', 'SiteController')
                         ->names('sites')
                         ->except(['edit', 'destroy']);

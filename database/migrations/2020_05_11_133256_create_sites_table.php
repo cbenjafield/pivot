@@ -18,6 +18,7 @@ class CreateSitesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('organisation_id');
             $table->string('title');
+            $table->unsignedBigInteger('home_page_id')->nullable();
             $table->string('logo_text')->nullable();
             $table->string('tld');
             $table->text('description')->nullable();

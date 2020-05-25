@@ -60,4 +60,36 @@ class Site extends Model
             'uses_www'   => $request->filled('uses_www')   ? 1 : 0,
         ]);
     }
+
+    /**
+     * Define the sites relationship to articles.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function articles()
+    {
+        return $this->hasMany(Article::class, 'site_id');
+    }
+
+    /**
+     * If the site does not have a home page ID specified,
+     * set to the one supplied. This prevents a site
+     * having no front page when it's live.
+     */
+    public function updateHomeIfNotExists(int $id)
+    {
+        $this->update([
+            'home_page_id' => $id,
+        ]);
+    }
+
+    /**
+     * Define the relationship to articles with
+     * their type set to a "page". This makes
+     * it much easier to query pages only.
+     */
+    public function pages()
+    {
+        return $this->articles()->whereIn('type', ['page']);
+    }
 }

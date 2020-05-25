@@ -16,7 +16,11 @@
             <main class="flex-1 relative z-0 overflow-y-auto py-6 focus:outline-none" tabindex="0">
             @endif
                 @yield('content-header')
+                @hasSection('content-class')
+                <div class="@yield('content-class')">
+                @else
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+                @endif
                     @include('partials.alerts')
                     @yield('content')
                 </div>

@@ -66,7 +66,9 @@ class SiteController extends Controller
      */
     public function show(Site $website)
     {
-        return $this->view('show', compact('website'));
+        $rootPages = $website->pages()->root()->published()->get();
+
+        return $this->view('show', compact('website', 'rootPages'));
     }
 
     /**

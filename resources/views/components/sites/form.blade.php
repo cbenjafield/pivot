@@ -1,6 +1,8 @@
 <form action="{{ $action }}" method="POST"{!! !empty($id) ? ' id="' . $id . '"' : '' !!}{!! !empty($ref) ? ' ref="' . $ref . '"' : '' !!}>
-    <div class="max-w-4xl mx-auto shadow sm:rounded-md sm:overflow-hidden mt-6">
+    <div class="shadow sm:rounded-md sm:overflow-hidden mt-6">
         <div class="px-4 py-5 bg-white sm:p-6">
+            {!! $slot !!}
+
             @include('partials.validation')
             <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
                 <label for="title" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
