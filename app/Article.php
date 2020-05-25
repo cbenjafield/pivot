@@ -9,6 +9,15 @@ class Article extends Model
 {
     protected $guarded = [];
 
+    protected static function booted()
+    {
+        static::saving(function ($article) {
+            if($article->status == 'published' && empty($article->published_at)) {
+                $article->published_at = now();
+            }
+        });
+    }
+
     public function site()
     {
         return $this->belongsTo(Site::class);
@@ -36,7 +45,7 @@ class Article extends Model
 
     public function scopePublished(Builder $query)
     {
-        return $query->where('status', 'publish')
-                        ->where('published_at', '>=', now()->format('Y-m-d H:i:s'));
+        return $query->where('status', 'published')
+                        ->where('published_at', '<=', now()->format('Y-m-d H:i:s'));
     }
 }

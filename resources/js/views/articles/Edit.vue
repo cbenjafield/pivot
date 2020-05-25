@@ -21,6 +21,16 @@
     </div>
     <div class="w-1/3">
         <div class="w-full p-3">
+            <div class="w-full mb-4 flex rounded-md shadow-sm">
+                <label class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm" for="status">
+                    Status
+                </label>
+                <select name="status" id="status" v-model="status" class="block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 rounded-l-none">
+                    <option value="drafted">Draft</option>
+                    <option value="published">Publish</option>
+                </select>
+            </div>
+
             <div class="w-full mb-4 flex items-center">
                 <span class="inline-flex rounded-md shadow-sm flex-1 mr-3">
                     <button type="button" class="flex w-full items-center px-6 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150" @click.prevent="save">
@@ -65,6 +75,7 @@ export default {
             content: this.article.content,
             errors: [],
             isSaving: false,
+            status: this.article.status
         };
     },
     methods: {
@@ -90,6 +101,7 @@ export default {
                 title: this.title,
                 slug: this.slug,
                 content: this.content,
+                status: this.status
             }).then(response => {
                 if(response.status == 200) {
                     this.isSaving = false;

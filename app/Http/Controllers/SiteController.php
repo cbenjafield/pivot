@@ -67,7 +67,7 @@ class SiteController extends Controller
     public function show(Site $website)
     {
         $rootPages = $website->pages()->root()->published()->get();
-
+        $website->checkHealth();
         return $this->view('show', compact('website', 'rootPages'));
     }
 

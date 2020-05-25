@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Requests\Sites\CreateRequest;
+use App\Services\HealthCheck;
 use App\Traits\CreatesFromRequest;
 use App\Traits\HasUrl;
 use Illuminate\Database\Eloquent\Model;
@@ -91,5 +92,19 @@ class Site extends Model
     public function pages()
     {
         return $this->articles()->whereIn('type', ['page']);
+    }
+
+    /**
+     * Check the website's health.
+     * 
+     * @return bool
+     */
+    public function checkHealth()
+    {
+        $healthCheck = (new HealthCheck($this->domain()))->check();
+
+        $this->update([
+            'passed_health_check' => $healthCheck->status == 200 ? 1 : 0
+        ]);
     }
 }

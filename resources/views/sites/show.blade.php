@@ -26,8 +26,6 @@
     </div>
     <div class="w-full md:w-1/2 sm:px-6">
         <form method="POST" action="{{ route('sites.details', $website->id) }}" id="siteDetailsForm">
-            @csrf
-            @method('PUT')
             <div class="shadow sm:rounded-md sm:overflow-hidden border border-gray-200 mt-6">
                 <div class="px-4 py-5 bg-white sm:p-6">
                     <h3 class="font-medium text-gray-900 mb-6 text-xl pb-4 border-b border-gray-200">Site Options</h3>
@@ -42,13 +40,22 @@
                                     <option value="">Show an index of posts</option>
                                     <optgroup label="Pages">
                                         @foreach($rootPages as $page)
-                                        <option value="{{ $page->id }}">{{ $page->title }}</option>
+                                        <option value="{{ $page->id }}"{{ $website->home_page_id == $page->id ? ' selected' : '' }}>{{ $page->title }}</option>
                                         @endforeach
                                     </optgroup>
                                 </select>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    @csrf
+                    @method('PUT')
+                    <span class="inline-flex rounded-md shadow-sm">
+                        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                            Save
+                        </button>
+                    </span>
                 </div>
             </div>
         </form>
