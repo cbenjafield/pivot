@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+.list-arrows li {
+  padding-left: 2rem;
+  position: relative;
+}
+
+.list-arrows li:before {
+  font-family: "Font Awesome 5 Pro";
+  width: 1.5rem;
+  content: "\F30B";
+  color: inherit;
+  position: absolute;
+  left: 0;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.navigation a {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 200ms;
+  font-weight: 500;
+  font-size: 1.125rem;
+  margin-right: 1rem;
+}
+
+.navigation a:hover {
+  background: #e02424;
+  color: #fff;
+}
+
+.navigation a:last-of-type {
+  margin-right: 0;
+}
+
+.hero ul li {
+  margin-bottom: 1rem;
+}
+
+.hero ul.list-arrows li:before, .hero ul.list-checks li:before {
+  color: #e02424;
+}

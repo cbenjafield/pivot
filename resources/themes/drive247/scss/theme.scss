@@ -1,0 +1,52 @@
+// Theme
+.list {
+    &-arrows {
+        li {
+            padding-left: theme('padding.8');
+            position: relative;
+
+            &:before {
+                font-family: 'Font Awesome 5 Pro';
+                width: theme('padding.6');
+                content: "\f30b";
+                color: inherit;
+                position: absolute;
+                left: 0;
+            }
+        }
+    }
+}
+
+.navigation {
+    @apply flex items-center justify-end;
+
+    a {
+        padding: theme('padding.2') theme('padding.3');
+        @apply rounded-md transition-colors duration-200 font-medium text-lg mr-4;
+
+        &:hover {
+            background: theme('colors.red.600');
+            color: #fff;
+        }
+
+        &:last-of-type {
+            @apply mr-0;
+        }
+    }
+}
+
+.hero {
+    ul {
+        li {
+            margin-bottom: theme('margin.4');
+        }
+
+        &.list-arrows, &.list-checks {
+            li {
+                &:before {
+                    color: theme('colors.red.600');
+                }
+            }
+        }
+    }
+}

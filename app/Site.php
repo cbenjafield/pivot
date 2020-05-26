@@ -79,9 +79,33 @@ class Site extends Model
      */
     public function updateHomeIfNotExists(int $id)
     {
+        if(!is_null($this->home_page_id)) return false;
+        
         $this->update([
             'home_page_id' => $id,
         ]);
+    }
+
+    /**
+     * If the site has a homepage, return true.
+     * otherwise, return false, so the site
+     * can display an index of blog posts.
+     * 
+     * @return bool
+     */
+    public function hasHomePage()
+    {
+        return !! $this->home_page_id;
+    } 
+
+    /**
+     * Return the site's homepage.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function homepage()
+    {
+        return $this->belongsTo(Article::class, 'home_page_id');
     }
 
     /**
@@ -106,5 +130,25 @@ class Site extends Model
         $this->update([
             'passed_health_check' => $healthCheck->status == 200 ? 1 : 0
         ]);
+    }
+
+    /**
+     * Return the website's theme path.
+     * 
+     * @return string
+     */
+    public function themePath($file)
+    {
+        return ($this->theme ?? 'default') . ".{$file}";
+    }
+
+    /**
+     * Determine if the website has a logo uploaded.
+     * 
+     * @return bool
+     */
+    public function hasLogo()
+    {
+        return !is_null($this->logo_path);
     }
 }

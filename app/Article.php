@@ -34,7 +34,7 @@ class Article extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Article::class);
+        return $this->belongsTo(Article::class, 'parent_id');
     }
 
     public function meta()
@@ -51,5 +51,39 @@ class Article extends Model
     {
         return $query->where('status', 'published')
                         ->where('published_at', '<=', now()->format('Y-m-d H:i:s'));
+    }
+
+    public function url()
+    {
+        if(is_null($this->url)) {
+            $this->makeUrl();
+        }
+        return $this->url;
+    }
+
+    public function makeUrl()
+    {
+        if(request('website') && $this->id == request('website')->home_page_id) {
+            return '/';
+        }
+
+        $parents = $this->parents->toArray();
+        $parents[] = $this->slug;
+        $url = implode('/', $parents);
+
+        $this->url = $url;
+
+        $this->save();
+    }
+
+    public function getParentsAttribute()
+    {
+        $collection = collect([]);
+        $parent = $this->parent;
+        while($parent) {
+            $collection->push($parent);
+            $parent = $parent->parent;
+        }
+        return $collection->reverse();
     }
 }
