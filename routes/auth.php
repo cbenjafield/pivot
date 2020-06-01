@@ -30,3 +30,12 @@ Route::put('websites/{website}/details', 'SiteController@updateDetails')->name('
 Route::resource('websites', 'SiteController')
                         ->names('sites')
                         ->except(['edit', 'destroy']);
+
+Route::group(['prefix' => 'websites/{website}/menus'], function () {
+    Route::get('/', 'MenuController@index')->name('menus.index');
+    Route::get('create', 'MenuController@create')->name('menus.create');
+    Route::get('{menu}', 'MenuController@show')->name('menus.show');
+    Route::put('{menu}', 'MenuController@update');
+    Route::post('/', 'MenuController@store');
+    Route::put('{menu}', 'MenuController@update');
+});

@@ -43,16 +43,17 @@ class Theme
         return asset("themes/{$this->website->theme}/images/{$image}");
     }
 
-    public function menu()
+    public function menu($position)
     {
-        $pages = $this->website->pages()
-                            ->root()
-                            ->published()
-                            ->get();
-
-        return view('menus.default', [
-            'pages' => $pages
-        ])->render();
+        $menu = $this->website->menus()
+                                ->select('id')
+                                ->where('position', $position)
+                                ->with('items')
+                                ->first();
+        
+        return view($this->website->themePath('menus.default'), [
+            'menu' => $menu
+        ]);
     }
 
 }

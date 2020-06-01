@@ -16,6 +16,7 @@ window.bus = new Vue;
 Vue.component('editor', require('./components/Editor.vue').default);
 Vue.component('editor-add-row', require('./components/editor/row.vue').default);
 Vue.component('edit-article-form', require('./views/articles/Edit.vue').default);
+Vue.component('menu-builder', require('./views/menus/Builder.vue').default);
 
 var fireBusEvent = (event, payload) => {
     window.bus.$emit(event, payload);

@@ -99,6 +99,10 @@ export default {
                 }
             });
 
+            document.querySelectorAll('.medium-editor-element [style]').forEach(element => {
+                element.removeAttribute('style');
+            });
+
             this.editor.subscribe('editableInput', (event, editorElement) => {
                 this.editor.saveSelection();
                 this.updateEditorContent(this.editor.getContent());

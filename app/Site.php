@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Http\Requests\Sites\CreateRequest;
+use App\Menus\Menu;
 use App\Services\HealthCheck;
 use App\Traits\CreatesFromRequest;
 use App\Traits\HasUrl;
@@ -150,5 +151,15 @@ class Site extends Model
     public function hasLogo()
     {
         return !is_null($this->logo_path);
+    }
+
+    /**
+     * Define the site's relationship to menus
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function menus()
+    {
+        return $this->hasMany(Menu::class);
     }
 }

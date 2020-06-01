@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="sm:flex-1 ml-6">
-                {!! Theme::menu() !!}
+                {!! Theme::menu('primary') !!}
             </div>
         </div>
     </div>
