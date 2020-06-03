@@ -38502,6 +38502,10 @@ video {
   transition-delay: 1000ms;
 }
 
+.z-front {
+  z-index: 9999;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;

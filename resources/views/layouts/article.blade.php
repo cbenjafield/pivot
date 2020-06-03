@@ -12,8 +12,6 @@
                 @yield('content')
             </main>
         </div>
-
-        <editor-add-row></editor-add-row>
         @yield('global-components')
     </div>
 
