@@ -33,7 +33,7 @@ export default {
     },
     methods: {
         remove() {
-             this.$parent.$parent.removeBlock(this.block.id);
+            this.$parent.$parent.removeBlock(this.block.id);
         },
         json() {
             var object = {
@@ -84,6 +84,9 @@ export default {
                 type: 'pivot-column',
                 initialWidth: '1/2'
             });
+        },
+        removeColumn(id) {
+            this.cols.splice(this.cols.findIndex(col => col.id === id), 1);
         }
     }
 }

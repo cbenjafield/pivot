@@ -1,6 +1,8 @@
 // Theme
+@import 'pivot';
+
 .list {
-    &-arrows {
+    &-arrows, &-checks {
         li {
             padding-left: theme('padding.8');
             position: relative;
@@ -8,11 +10,20 @@
             &:before {
                 font-family: 'Font Awesome 5 Pro';
                 width: theme('padding.6');
-                content: "\f30b";
                 color: inherit;
                 position: absolute;
                 left: 0;
             }
+        }
+    }
+    &-arrows {
+        li:before {
+            content: "\f30b";
+        }
+    }
+    &-checks {
+        li:before {
+            content: "\f00c";
         }
     }
 }
@@ -38,7 +49,11 @@
 .hero {
     ul {
         li {
-            margin-bottom: theme('margin.4');
+            margin-bottom: theme('margin.5');
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
         }
 
         &.list-arrows, &.list-checks {
@@ -48,5 +63,13 @@
                 }
             }
         }
+    }
+}
+
+.button {
+    @apply px-5 py-2 text-white inline-block shadow-sm rounded bg-red-600 font-semibold cursor-pointer duration-300 transition-colors;
+
+    &:hover {
+        @apply bg-red-800;
     }
 }

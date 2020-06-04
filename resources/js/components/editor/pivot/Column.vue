@@ -19,6 +19,7 @@
                     </button>
                 </div>
                 <div>
+                    <button type="button" class="text-sm text-gray-500" @click.prevent="remove"><i class="far fa-times mr-1"></i> Remove</button>
                     <input type="text" v-model="width" class="border rounded border-gray-200 text-sm w-10">
                 </div>
             </div>
@@ -52,6 +53,9 @@ export default {
         removeBlock(id) {
             this.blocks.splice(this.blocks.findIndex(block => block.id === id), 1);
         },
+        remove() {
+            this.$parent.removeColumn(this.column.id);
+        },
         text() {
             this.blocks.push({
                 id: `text-${window.randomString(8)}`,
@@ -69,7 +73,7 @@ export default {
         json() {
             var object = {
                 id: this.column.id,
-                type: this.column.type,
+                type: 'pivot-column',
                 blocks: [],
                 width: this.width
             };

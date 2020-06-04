@@ -1,6 +1,6 @@
 <template>
     <div>
-        <tui-editor @change="change" ref="textContent" :initialValue="content" :options="editorOptions" height="250px" initialEditType="wysiwyg" />
+        <tui-editor @change="change" ref="textContent" previewStyle="tab" :initialValue="content" :options="editorOptions" height="250px" initialEditType="wysiwyg" />
         <div class="mt-2 flex items-center text-sm">
             <div class="flex-1 mr-6">
 
@@ -26,7 +26,8 @@ export default {
     data() {
         return {
             editorOptions: {
-                hideModeSwitch: true
+                hideModeSwitch: false,
+                useDefaultHTMLSanitizer: false
             },
             content: 'Enter text here...'
         };

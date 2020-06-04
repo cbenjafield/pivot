@@ -2,11 +2,14 @@
 
 namespace App;
 
+use App\Traits\DisplaysContent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+    use DisplaysContent;
+    
     protected $guarded = [];
 
     protected $casts = [

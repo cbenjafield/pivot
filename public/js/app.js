@@ -37496,6 +37496,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['column'],
@@ -37521,6 +37522,9 @@ __webpack_require__.r(__webpack_exports__);
         return block.id === id;
       }), 1);
     },
+    remove: function remove() {
+      this.$parent.removeColumn(this.column.id);
+    },
     text: function text() {
       this.blocks.push({
         id: "text-".concat(window.randomString(8)),
@@ -37540,7 +37544,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var object = {
         id: this.column.id,
-        type: this.column.type,
+        type: 'pivot-column',
         blocks: [],
         width: this.width
       };
@@ -37759,6 +37763,11 @@ __webpack_require__.r(__webpack_exports__);
         type: 'pivot-column',
         initialWidth: '1/2'
       });
+    },
+    removeColumn: function removeColumn(id) {
+      this.cols.splice(this.cols.findIndex(function (col) {
+        return col.id === id;
+      }), 1);
     }
   }
 });
@@ -37800,7 +37809,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       editorOptions: {
-        hideModeSwitch: true
+        hideModeSwitch: false,
+        useDefaultHTMLSanitizer: false
       },
       content: 'Enter text here...'
     };
@@ -80840,6 +80850,21 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", [
+            _c(
+              "button",
+              {
+                staticClass: "text-sm text-gray-500",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.remove($event)
+                  }
+                }
+              },
+              [_c("i", { staticClass: "far fa-times mr-1" }), _vm._v(" Remove")]
+            ),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -81134,6 +81159,7 @@ var render = function() {
       _c("tui-editor", {
         ref: "textContent",
         attrs: {
+          previewStyle: "tab",
           initialValue: _vm.content,
           options: _vm.editorOptions,
           height: "250px",
@@ -81362,7 +81388,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "form",
+    "div",
     {
       staticClass: "flex items-stretch w-full",
       attrs: { id: "createArticleForm" }
@@ -97572,15 +97598,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./resources/js/components/editor/pivot/Column.vue ***!
   \*********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Column_vue_vue_type_template_id_1da86a6c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Column.vue?vue&type=template&id=1da86a6c& */ "./resources/js/components/editor/pivot/Column.vue?vue&type=template&id=1da86a6c&");
 /* harmony import */ var _Column_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Column.vue?vue&type=script&lang=js& */ "./resources/js/components/editor/pivot/Column.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Column_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Column_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -97610,7 +97635,7 @@ component.options.__file = "resources/js/components/editor/pivot/Column.vue"
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/editor/pivot/Column.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

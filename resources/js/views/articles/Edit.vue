@@ -1,5 +1,5 @@
 <template>
-<form class="flex items-stretch w-full" id="createArticleForm">
+<div class="flex items-stretch w-full" id="createArticleForm">
     <div class="flex-1 bg-white relative">
         <div class="md:flex md:items-center h-16">
             <label class="md:w-1/6 text-gray-500 md:p-3" for="title">
@@ -46,7 +46,7 @@
             </div>
         </div>
     </div>
-</form>
+</div>
 </template>
 <script>
 export default {
