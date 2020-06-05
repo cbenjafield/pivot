@@ -12,10 +12,13 @@
 </head>
 <body>
     
-    <div class="min-h-screen bg-white">
+    <div class="min-h-screen bg-white" id="site">
         @include(Theme::partial('header'))
         @yield('content')
+        @include(Theme::partial('footer'))
     </div>
+
+    <script src="{{ asset(mix('js/site.js')) }}">
 
 </body>
 </html>

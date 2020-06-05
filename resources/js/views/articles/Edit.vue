@@ -1,5 +1,5 @@
 <template>
-<form class="flex items-stretch w-full" id="createArticleForm">
+<div class="flex items-stretch w-full" id="createArticleForm">
     <div class="flex-1 bg-white relative">
         <div class="md:flex md:items-center h-16">
             <label class="md:w-1/6 text-gray-500 md:p-3" for="title">
@@ -44,22 +44,9 @@
                     </button>
                 </span>
             </div>
-            <div class="w-full border-t border-dashed border-gray-200 pt-4">
-                <input type="hidden" name="status" id="status" value="drafted">
-                <div class="flex rounded-md shadow-sm mb-2">
-                    <button type="button" class="inline-flex w-full items-center px-4 py-2 border border-gray-300 text-base leading-6 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
-                        <i class="far fa-image-polaroid fa-fw mr-2"></i> Insert Image
-                    </button>
-                </div>
-                <div class="flex rounded-md shadow-sm mb-2">
-                    <button type="button" class="inline-flex w-full items-center px-4 py-2 border border-gray-300 text-base leading-6 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" @click.prevent="$root.busEvent('article-insert-row', $refs.ArticleEditor)">
-                        <i class="far fa-arrows-h fa-fw mr-2"></i> Insert Row
-                    </button>
-                </div>
-            </div>
         </div>
     </div>
-</form>
+</div>
 </template>
 <script>
 export default {
@@ -97,10 +84,12 @@ export default {
 
             if(this.errors.length) return false;
 
+            // console.log(this.$refs.ArticleEditor.getContent());
+
             axios.put(this.action, {
                 title: this.title,
                 slug: this.slug,
-                content: this.content,
+                content: this.$refs.ArticleEditor.getContent(),
                 status: this.status
             }).then(response => {
                 if(response.status == 200) {
@@ -114,7 +103,7 @@ export default {
                         alert('A different error.');
                     }
                 }
-            })
+            });
         }
     }
 }

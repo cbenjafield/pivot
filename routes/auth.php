@@ -39,3 +39,8 @@ Route::group(['prefix' => 'websites/{website}/menus'], function () {
     Route::post('/', 'MenuController@store');
     Route::put('{menu}', 'MenuController@update');
 });
+
+Route::group(['prefix' => 'websites/{website}'], function () {
+    Route::get('media/all', 'MediaController@all')->name('media.all');
+    Route::resource('media', 'MediaController')->names('media.');
+});

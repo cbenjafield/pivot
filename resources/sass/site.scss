@@ -1,5 +1,10 @@
 /* purgecss start ignore */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+
+.pivot-row {
+    @apply py-16;
+}
+
 /* purgecss end ignore */
 @import "tailwindcss/utilities";

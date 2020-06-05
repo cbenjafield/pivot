@@ -21,9 +21,9 @@ class WebsiteController extends Controller
 
     protected function homepage()
     {
-        $page = request('website')->homepage;
+        $article = request('website')->homepage;
 
-        return $this->view('home', compact('page'));
+        return $this->view('home', compact('article'));
     }
 
 }
