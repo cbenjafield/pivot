@@ -89,6 +89,17 @@
   color: #e02424;
 }
 
+.hero-video-wrapper:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(https://pivot.hs/storage/media/84c0edad-9529-4918-bedb-c26014414a3e.png);
+}
+
 .button {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
@@ -113,4 +124,47 @@
   --bg-opacity: 1;
   background-color: #9b1c1c;
   background-color: rgba(155, 28, 28, var(--bg-opacity));
+}
+
+@media (max-width: 768px) {
+  .main-nav {
+    display: block;
+    position: fixed;
+    top: 6.3rem;
+    bottom: 0;
+    right: 0;
+    width: 80vw;
+    background: black;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+    margin-right: -80vw;
+    transition: margin 300ms;
+  }
+
+  .main-nav .navigation {
+    display: block;
+  }
+
+  .main-nav .navigation a {
+    display: block;
+    margin: 0;
+    border-radius: 0;
+    font-size: 1.25rem;
+    color: white;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #4b5563;
+  }
+
+  .main-nav .navigation a:last-child {
+    border-bottom: 0;
+  }
+
+  body.menu-open {
+    overflow-y: hidden;
+  }
+
+  body.menu-open .main-nav {
+    margin-right: 0;
+  }
 }

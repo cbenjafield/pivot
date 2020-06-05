@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Menus\Menu;
 use App\Site;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class MenuController extends Controller
 {
@@ -43,16 +44,15 @@ class MenuController extends Controller
     {
         $this->validate(request(), [
             'title' => ['required'],
-        ]);
-
-        // Temporary...
-        $website->menus()->update([
-            'position' => null
+            'position' => [
+                'required',
+                Rule::in(['primary', 'secondary']),
+            ]
         ]);
 
         $menu = $website->menus()->create([
             'title' => request('title'),
-            'position' => 'primary',
+            'position' => request('position'),
         ]);
 
         if(is_array(request('items'))) {
@@ -61,7 +61,7 @@ class MenuController extends Controller
 
         return response()->json([
             'redirect_url' => route('menus.show', [$website->id, $menu->id])
-        ], 200);
+        ], 201);
     }
 
     /**
@@ -89,10 +89,15 @@ class MenuController extends Controller
     {
         $this->validate(request(), [
             'title' => ['required'],
+            'position' => [
+                'required',
+                Rule::in(['primary', 'secondary']),
+            ]
         ]);
 
         $menu->update([
-            'title' => request('title')
+            'title' => request('title'),
+            'position' => request('position'),
         ]);
 
         if(is_array(request('items')) && !empty(request('items'))) {

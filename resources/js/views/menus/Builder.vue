@@ -33,6 +33,21 @@
                                 <p class="mt-2 text-sm text-gray-500">This is the title of the menu.</p>
                             </div>
                         </div>
+                        <div class="mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                            <label for="title" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                                Position
+                            </label>
+                            <div class="mt-1 sm:mt-0 sm:col-span-2">
+                                <div class="max-w-lg rounded-md shadow-sm sm:max-w-xs">
+                                    <select id="position" v-model="position" class="block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5">
+                                        <option value="primary">Primary - Header</option>
+                                        <option value="secondary">Secondary - Footer</option>
+                                    </select>
+                                </div>
+                                <p class="mt-2 text-sm text-red-600 font-bold" v-if="error('position')">{{ error('position') }}</p>
+                                <p class="mt-2 text-sm text-gray-500">The menu can either be primary (header) or secondary (footer).</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <add-menu-item/>
@@ -85,7 +100,8 @@ export default {
         return {
             items: [],
             errors: {},
-            title: null
+            title: null,
+            position: 'primary'
         }
     },
     mounted() {
@@ -111,6 +127,7 @@ export default {
         initBuilder() {
             if(typeof this.menu != 'undefined' && this.menu) {
                 this.title = this.menu.title;
+                this.position = this.menu.position;
 
                 if(this.menu.items.length) {
                     this.menu.items.forEach(item => {
@@ -158,7 +175,8 @@ export default {
             if(this.isEditMode) {
                 axios.put(url, {
                     title: this.title,
-                    items: this.sequencedItems
+                    items: this.sequencedItems,
+                    position: this.position
                 }).then(response => {
                     if(response.status == 200) {
                         return window.location.reload();
@@ -171,7 +189,8 @@ export default {
             } else {
                 axios.post(url, {
                     title: this.title,
-                    items: this.sequencedItems
+                    items: this.sequencedItems,
+                    position: this.position
                 }).then(response => {
                     if(response.status == 201) {
                         return window.location.href = response.data.redirect_url || `websites/${this.site_id}/menus`;

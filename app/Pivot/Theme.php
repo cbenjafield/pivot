@@ -43,7 +43,7 @@ class Theme
         return asset("themes/{$this->website->theme}/images/{$image}");
     }
 
-    public function menu($position)
+    public function menu($position, $theme = 'default')
     {
         $menu = $this->website->menus()
                                 ->select('id')
@@ -51,7 +51,7 @@ class Theme
                                 ->with('items')
                                 ->first();
         
-        return view($this->website->themePath('menus.default'), [
+        return view($this->website->themePath("menus.{$theme}"), [
             'menu' => $menu
         ]);
     }

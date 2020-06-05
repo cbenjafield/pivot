@@ -13,7 +13,8 @@ module.exports = {
     }
   },
   variants: {
-    borderWidth: ['responsive', 'first', 'hover', 'focus', 'last']
+    borderWidth: ['responsive', 'first', 'hover', 'focus', 'last'],
+    margin: ['responsive', 'first', 'hover', 'focus', 'last'],
   },
   plugins: [
     require('@tailwindcss/ui'),

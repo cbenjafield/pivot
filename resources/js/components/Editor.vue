@@ -42,7 +42,7 @@
             </div>
         </div>
         <div class="editor-content">
-            <draggable v-model="blocks" group="rootBlocks">
+            <draggable v-model="blocks" group="rootBlocks" handle=".drag-handle">
                 <component v-for="block in blocks" :key="block.id" :block="block" :is="block.type" class="mb-6" :ref="block.id"/>
             </draggable>
         </div>
@@ -130,6 +130,8 @@ export default {
 
                 if(newBlock.type == 'pivot-row') {
                     newBlock.content = block.blocks;
+                    newBlock.sectionClassNames = block.sectionClassNames;
+                    newBlock.classNames = block.classNames;
                 }
                 if(newBlock.type == 'pivot-text') {
                     newBlock.content = block.content;

@@ -1,5 +1,15 @@
 <template>
-    <div>
+    <div class="my-2">
+        <div class="flex items-center text-sm">
+            <div class="column-drag-handle bg-gray-200 text-gray-400 px-3 py-2">
+                <i class="far fa-hand-paper"></i>
+            </div>
+            <div class="flex-1 pl-4">
+                <button type="button" class="text-gray-500" @click.prevent="isOptionsOpen = true">
+                    <i class="far fa-cog mr-1"></i> Options
+                </button>
+            </div>
+        </div>
         <tui-editor @change="change" ref="textContent" previewStyle="tab" :initialValue="content" :options="editorOptions" height="250px" initialEditType="wysiwyg" />
         <div class="mt-2 flex items-center text-sm">
             <div class="flex-1 mr-6">

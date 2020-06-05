@@ -16,11 +16,15 @@ window.bus = new Vue;
 Vue.component('editor', require('./components/Editor.vue').default);
 Vue.component('edit-article-form', require('./views/articles/Edit.vue').default);
 Vue.component('menu-builder', require('./views/menus/Builder.vue').default);
+Vue.component('media-library', require('./views/media/Index.vue').default);
 
 Vue.component('pivot-row', require('./components/editor/pivot/Row.vue').default);
 Vue.component('pivot-text', require('./components/editor/pivot/Text.vue').default);
+Vue.component('pivot-image', require('./components/editor/pivot/Image.vue').default);
 Vue.component('pivot-column', require('./components/editor/pivot/Column.vue').default);
 Vue.component('pivot-hero', require('./components/editor/pivot/Hero.vue').default);
+
+Vue.component('image-chooser', require('./components/media/Chooser.vue').default);
 
 var fireBusEvent = (event, payload) => {
     window.bus.$emit(event, payload);

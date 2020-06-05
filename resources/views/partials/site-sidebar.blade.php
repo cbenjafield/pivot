@@ -7,7 +7,7 @@
     leave-class="opacity-100"
     leave-to-class="opacity-0"
 >
-    <div class="md:hidden z-40" v-show="isNavOpen">
+    <div class="md:hidden z-front" v-show="isNavOpen">
         <div class="fixed inset-0 flex z-40">
             <transition
                 enter-active-class="transition-opacity ease-linear duration-300"
@@ -85,6 +85,9 @@
                 </a>
                 <a href="{{ url("websites/{$website->id}/menus") }}" class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150">
                     <i class="far fa-fw fa-bars mr-2"></i> Menus
+                </a>
+                <a href="{{ url("websites/{$website->id}/media") }}" class="mt-1 group flex items-center px-2 py-2 text-sm leading-5 font-medium text-gray-900 rounded-md hover:text-gray-900 hover:bg-gray-100 focus:outline-none focus:bg-gray-200 transition ease-in-out duration-150">
+                    <i class="far fa-fw fa-photo-video mr-2"></i> Media
                 </a>
             </nav>
         </div>

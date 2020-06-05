@@ -4,8 +4,15 @@
         classNames,
     ]">
         <div class="p-3 shadow bg-white">
+            <div class="flex items-center text-sm">
+                <div class="flex-1 py-2">
+                    <button type="button" class="text-gray-500" @click.prevent="isOptionsOpen = true">
+                        <i class="far fa-cog mr-1"></i> Options
+                    </button>
+                </div>
+            </div>
             <div>
-                <draggable v-model="blocks" group="columnBlocks">
+                <draggable v-model="blocks" group="columnBlocks" handle=".column-drag-handle">
                     <component v-for="block in blocks" :key="block.id" :is="block.type" :block="block" :ref="block.id"/>
                 </draggable>
             </div>
@@ -63,6 +70,13 @@ export default {
                 content: null
             });
         },
+        image() {
+            this.blocks.push({
+                id: `image-${window.randomString(8)}`,
+                type: 'pivot-image',
+                src: null
+            });
+        },
         row() {
             this.blocks.push({
                 id: `row-${window.randomString(8)}`,
@@ -100,6 +114,9 @@ export default {
                     newBlock.content = block.blocks;
                 }
                 if(newBlock.type == 'pivot-text') {
+                    newBlock.content = block.content;
+                }
+                if(newBlock.type == 'pivot-image') {
                     newBlock.content = block.content;
                 }
 

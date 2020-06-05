@@ -15,6 +15,7 @@
         @yield('global-components')
     </div>
 
+    @yield('scripts')
     @include('partials.foot')
 </body>
 </html>

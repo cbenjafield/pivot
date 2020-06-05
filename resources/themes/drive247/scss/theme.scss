@@ -64,6 +64,15 @@
             }
         }
     }
+    &-video {
+        &-wrapper {
+            &:after {
+                content: " ";
+                @apply block absolute inset-0;
+                background: url(https://pivot.hs/storage/media/84c0edad-9529-4918-bedb-c26014414a3e.png);
+            }
+        }
+    }
 }
 
 .button {
@@ -72,4 +81,48 @@
     &:hover {
         @apply bg-red-800;
     }
+}
+
+@media (max-width: theme('screens.md')) {
+
+    .main-nav {
+        display: block;
+        position: fixed;
+        top: 6.3rem;
+        bottom: 0;
+        right: 0;
+        width: 80vw;
+        background: black;
+        @apply shadow-lg;
+        overflow-y: auto;
+        margin-right: -80vw;
+        transition: margin 300ms;
+
+        .navigation {
+            display: block;
+
+            a {
+                display: block;
+                margin: 0;
+                border-radius: 0;
+                font-size: theme('fontSize.xl');
+                color: white;
+                @apply py-6;
+                border-bottom: 1px solid theme('colors.gray.600');
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+
+    body.menu-open {
+        overflow-y: hidden;
+
+        .main-nav {
+            margin-right: 0;
+        }
+    }
+
 }

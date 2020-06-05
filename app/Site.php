@@ -7,11 +7,12 @@ use App\Menus\Menu;
 use App\Services\HealthCheck;
 use App\Traits\CreatesFromRequest;
 use App\Traits\HasUrl;
+use App\Traits\UploadsMedia;
 use Illuminate\Database\Eloquent\Model;
 
 class Site extends Model
 {
-    use CreatesFromRequest;
+    use CreatesFromRequest, UploadsMedia;
 
     protected $guarded = [];
 
@@ -161,5 +162,10 @@ class Site extends Model
     public function menus()
     {
         return $this->hasMany(Menu::class);
+    }
+
+    public function media()
+    {
+        return $this->hasMany(Media::class);
     }
 }
