@@ -6,7 +6,8 @@
 @endsection
 
 @section('global-components')
-<image-chooser ref="imageChooser" />
+<image-chooser ref="imageChooser"></image-chooser>
+<add-element ref="addElement"></add-element>
 @endsection
 
 @section('scripts')

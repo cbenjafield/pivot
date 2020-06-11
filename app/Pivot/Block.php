@@ -2,13 +2,10 @@
 
 namespace App\Pivot;
 
-use App\Site;
-use Illuminate\Contracts\Support\Arrayable;
-use Illuminate\Contracts\Support\Jsonable;
-use Illuminate\Database\Eloquent\Concerns\HasAttributes;
 use Illuminate\Support\Facades\View;
-use JsonSerializable;
+use Illuminate\Support\Str;
 use ParsedownExtra;
+use App\Site;
 
 class Block
 {
@@ -20,6 +17,12 @@ class Block
     {
         $this->website = $website;
         $this->fill($attributes);
+        $this->runRenderMethods();
+    }
+
+    public static function make($block)
+    {
+        return new static(request('website'), $block->toArray());
     }
 
     public function fill(array $attributes)
@@ -40,6 +43,11 @@ class Block
         $this->attributes[$key] = $value;
     }
 
+    public function toArray()
+    {
+        return $this->attributes;
+    }
+
     public function render()
     {
         return View::first([
@@ -47,7 +55,8 @@ class Block
             "default.components.{$this->type}",
             "default.components.fallback",
         ], [
-            'block' => $this
+            'block' => $this,
+            'website' => $this->website
         ])->render();
     }
 
@@ -70,5 +79,50 @@ class Block
     {
         return (new ParsedownExtra)
                         ->text($this->content);
+    }
+
+    protected function runRenderMethods()
+    {
+        $methodName = 'build' . Str::studly($this->type);
+
+        if(method_exists($this, $methodName)) {
+            $this->$methodName();
+        }
+    }
+
+    protected function buildPivotPassrates()
+    {
+        $months = [];
+        $bars = [];
+
+        for($i = 1; $i < 4; $i++) {
+            $months[] = [
+                'day' => (integer) date('j', strtotime("-{$i} month")),
+                'month' => (integer) date('n', strtotime("-{$i} month")),
+                'year' => (integer) date('Y', strtotime("-{$i} month")),
+            ];
+        }
+        
+        asort($months);
+
+        $values = [93, 94, 90];
+
+        foreach($months as $key => $m) {
+            $date = mktime(0, 0, 0, $m['month'], $m['day'], $m['year']);
+
+            $bars[] = [
+                'title' => date('F Y', $date),
+                'value' => $values[$key],
+            ];
+        }
+
+        $avg = floor(array_sum($values) / count($values));
+
+        $bars[] = [
+            'title' => 'Average',
+            'value' => $avg,
+        ];
+
+        $this->setAttribute('bars', $bars);
     }
 }

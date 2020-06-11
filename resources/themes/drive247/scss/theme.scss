@@ -47,6 +47,11 @@
 }
 
 .hero {
+    background-image: url(/storage/media/8dbadfb7-0e78-4ca6-b6fe-a41fd267f07c.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+
     ul {
         li {
             margin-bottom: theme('margin.5');
@@ -125,4 +130,18 @@
         }
     }
 
+}
+
+.page {
+    &-header {
+        @apply relative;
+        background: theme('colors.gray.900') url(/themes/drive247/images/page-title-background.jpg) no-repeat 50%/cover;
+
+        &:before {
+            display: block;
+            content: " ";
+            @apply absolute inset-0;
+            background: rgba(black, .4) url(/storage/media/84c0edad-9529-4918-bedb-c26014414a3e.png) repeat;
+        }
+    }
 }

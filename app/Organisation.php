@@ -5,11 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Requests\Organisations\OrganisationRequest;
 use App\Traits\CreatesFromRequest;
+use App\Traits\HasAddress;
 use App\Traits\HasUrl;
 
 class Organisation extends Model
 {
-    use HasUrl, CreatesFromRequest;
+    use HasUrl, CreatesFromRequest, HasAddress;
 
     protected $guarded = [];
 
@@ -17,21 +18,6 @@ class Organisation extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function getStringAddressAttribute()
-    {
-        return implode(', ', array_filter([
-            $this->street_address,
-            $this->locality,
-            $this->city,
-            $this->postcode
-        ]));
-    }
-
-    /**
-     * @todo Add address schema method
-     * @todo Add phone number methods
-     */
 
     /**
      * Get the fillable request attributes from the request.

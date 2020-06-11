@@ -19,8 +19,10 @@ trait DisplaysContent
         $content = new Collection;
         $website = request('website');
 
-        foreach($jsonContent as $block) {
-            $content->add(new Block($website, $block));
+        if(!empty($jsonContent)) {
+            foreach($jsonContent as $block) {
+                $content->add(new Block($website, $block));
+            }
         }
 
         return $content;

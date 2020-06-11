@@ -8,7 +8,9 @@
                 
             </div>
         </div>
-        <tui-editor @change="change" ref="textContent" previewStyle="tab" :initialValue="content" :options="editorOptions" height="250px" initialEditType="wysiwyg" />
+        
+        <textarea v-model="content" class="md-field w-full border border-gray-200 rounded-none p-3 text-sm" rows="10"></textarea>
+
         <div class="mt-2 flex items-center text-sm">
             <div class="flex-1 mr-6">
                 
@@ -21,23 +23,19 @@
         </div>
     </div>
 </template>
+<style lang="scss">
+.md-field {
+    height: 250px;
+}
+</style>
 <script>
-import { Editor } from '@toast-ui/vue-editor'
-
 export default {
     props: [
         'block'
     ],
-    components: {
-        'tui-editor': Editor
-    },
     data() {
         return {
-            editorOptions: {
-                hideModeSwitch: false,
-                useDefaultHTMLSanitizer: false
-            },
-            content: 'Enter text here...'
+            content: 'Enter markdown here...'
         };
     },
     mounted() {

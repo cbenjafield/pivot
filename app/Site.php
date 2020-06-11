@@ -16,6 +16,10 @@ class Site extends Model
 
     protected $guarded = [];
 
+    protected $with = [
+        'organisation',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

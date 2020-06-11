@@ -230,6 +230,7 @@ return [
         'Theme' => App\Pivot\Facades\Theme::class,
         'Article' => App\Pivot\Facades\Article::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Block' => App\Pivot\Facades\Block::class,
 
     ],
 

@@ -51,4 +51,11 @@ class Article
                                 ->render();
     }
 
+    public function findFromRoute()
+    {
+        return request('website')->pages()
+                                        ->where('url', request()->path())
+                                        ->firstOrFail();
+    }
+
 }

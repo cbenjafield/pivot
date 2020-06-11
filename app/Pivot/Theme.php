@@ -56,4 +56,9 @@ class Theme
         ]);
     }
 
+    public function view($filename, array $data = [])
+    {
+        return view($this->website->themePath($filename), $data);
+    }
+
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Site;
 use App\Traits\HasTheme;
 use Illuminate\Http\Request;
+use Article as ArticleFacade;
 
 class WebsiteController extends Controller
 {
@@ -24,6 +25,13 @@ class WebsiteController extends Controller
         $article = request('website')->homepage;
 
         return $this->view('home', compact('article'));
+    }
+
+    public function article()
+    {
+        $article = ArticleFacade::findFromRoute();
+
+        return $article->view();
     }
 
 }

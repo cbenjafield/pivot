@@ -30,8 +30,6 @@
                         <div class="rounded-md bg-white shadow-xs">
                             <div class="py-1">
                                 <a href="#"
-                                    class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" @click.prevent="insertBlock('text')">Text</a>
-                                <a href="#"
                                     class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" @click.prevent="insertBlock('row')">Row with columns</a>
                                 <a href="#"
                                     class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus:bg-gray-100 focus:text-gray-900" @click.prevent="insertBlock('hero')">Hero Section</a>

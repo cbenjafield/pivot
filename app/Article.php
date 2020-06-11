@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Pivot\Facades\Theme;
 use App\Traits\DisplaysContent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -88,5 +89,21 @@ class Article extends Model
             $parent = $parent->parent;
         }
         return $collection->reverse();
+    }
+
+    public function requestIsHomePage()
+    {
+        return $this->id === request('website')->home_page_id;
+    }
+
+    public function view()
+    {
+        return Theme::view(
+            ($this->type == 'page' ? 'page' : 'post'),
+            [
+                'article' => $this,
+                'website' => request('website')
+            ]
+        );
     }
 }

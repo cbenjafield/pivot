@@ -8,7 +8,11 @@
                 
             </div>
         </div>
-        <tui-editor @change="change" ref="textContent" previewStyle="tab" :initialValue="content" :options="editorOptions" height="250px" initialEditType="wysiwyg" />
+        
+        <div class="address-field border border-gray-200 flex items-center justify-center text-lg text-gray-400">
+            <i class="far fa-map-marker-alt mr-2"></i> Website Address
+        </div>
+
         <div class="mt-2 flex items-center text-sm">
             <div class="flex-1 mr-6">
                 
@@ -21,23 +25,19 @@
         </div>
     </div>
 </template>
+<style lang="scss">
+.address-field {
+    height: 160px;
+}
+</style>
 <script>
-import { Editor } from '@toast-ui/vue-editor'
-
 export default {
     props: [
         'block'
     ],
-    components: {
-        'tui-editor': Editor
-    },
     data() {
         return {
-            editorOptions: {
-                hideModeSwitch: false,
-                useDefaultHTMLSanitizer: false
-            },
-            content: 'Enter text here...'
+            heading: null
         };
     },
     mounted() {
@@ -51,20 +51,12 @@ export default {
             return {
                 id: this.block.id,
                 type: this.block.type,
-                content: this.content
+                heading: this.heading
             };
         },
-        getMarkdown() {
-            return this.$refs.textContent.invoke('getMarkdown');
-        },
-        change() {
-            this.content = this.getMarkdown();
-            this.$forceUpdate();
-        },
         setContent() {
-            if(this.block.content) {
-                this.content = this.block.content;
-                this.$refs.textContent.invoke('setMarkdown', this.content);
+            if(this.block.heading) {
+                this.heading = this.block.heading;
             }
         }
     }

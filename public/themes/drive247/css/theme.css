@@ -77,6 +77,13 @@
   margin-right: 0;
 }
 
+.hero {
+  background-image: url(/storage/media/8dbadfb7-0e78-4ca6-b6fe-a41fd267f07c.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+}
+
 .hero ul li {
   margin-bottom: 1.25rem;
 }
@@ -167,4 +174,20 @@
   body.menu-open .main-nav {
     margin-right: 0;
   }
+}
+
+.page-header {
+  position: relative;
+  background: #161e2e url(/themes/drive247/images/page-title-background.jpg) no-repeat 50%/cover;
+}
+
+.page-header:before {
+  display: block;
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.4) url(/storage/media/84c0edad-9529-4918-bedb-c26014414a3e.png) repeat;
 }

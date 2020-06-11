@@ -18,11 +18,8 @@
             </div>
             <div class="mt-2 pt-2 flex items-center">
                 <div class="flex-1 flex items-center text-sm">
-                    <button type="button" class="text-indigo-500 mr-4" @click.prevent="insertBlock('text')">
-                        <i class="far fa-plus mr-1"></i> Text
-                    </button>
-                    <button type="button" class="text-indigo-500" @click.prevent="insertBlock('image')">
-                        <i class="far fa-plus mr-1"></i> Image
+                    <button type="button" class="text-indigo-500 mr-4" @click.prevent="openAddElement">
+                        <i class="far fa-plus mr-1"></i> Add
                     </button>
                 </div>
                 <div>
@@ -53,7 +50,17 @@ export default {
     mounted() {
         this.setContent();
     },
+    created() {
+        window.bus.$on('insert-element', (payload) => {
+            if(payload.ref == this.column.id) {
+                this.insertBlock(payload.type);
+            }
+        });
+    },
     methods: {
+        openAddElement() {
+            window.bus.$emit('open-insert-element', this.column.id);
+        },
         insertBlock(type) {
             this[type]();
         },
@@ -75,6 +82,27 @@ export default {
                 id: `image-${window.randomString(8)}`,
                 type: 'pivot-image',
                 src: null
+            });
+        },
+        passrates() {
+            this.blocks.push({
+                id: `passrates-${window.randomString(8)}`,
+                type: 'pivot-passrates',
+                heading: null
+            });
+        },
+        address() {
+            this.blocks.push({
+                id: `address-${window.randomString(8)}`,
+                type: 'pivot-address',
+                heading: null
+            });
+        },
+        markdown() {
+            this.blocks.push({
+                id: `md-${window.randomString(8)}`,
+                type: 'pivot-md',
+                content: null
             });
         },
         row() {
@@ -113,8 +141,11 @@ export default {
                 if(newBlock.type == 'pivot-row') {
                     newBlock.content = block.blocks;
                 }
-                if(newBlock.type == 'pivot-text') {
+                if(newBlock.type == 'pivot-text' || newBlock.type == 'pivot-md') {
                     newBlock.content = block.content;
+                }
+                if(newBlock.type == 'pivot-passrates') {
+                    newBlock.heading = block.heading;
                 }
                 if(newBlock.type == 'pivot-image') {
                     newBlock.content = block.content;

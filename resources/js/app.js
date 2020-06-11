@@ -23,8 +23,12 @@ Vue.component('pivot-text', require('./components/editor/pivot/Text.vue').defaul
 Vue.component('pivot-image', require('./components/editor/pivot/Image.vue').default);
 Vue.component('pivot-column', require('./components/editor/pivot/Column.vue').default);
 Vue.component('pivot-hero', require('./components/editor/pivot/Hero.vue').default);
+Vue.component('pivot-md', require('./components/editor/pivot/Markdown.vue').default);
+Vue.component('pivot-passrates', require('./components/editor/pivot/PassRates.vue').default);
+Vue.component('pivot-address', require('./components/editor/pivot/Address.vue').default);
 
 Vue.component('image-chooser', require('./components/media/Chooser.vue').default);
+Vue.component('add-element', require('./components/editor/pivot/AddElement.vue').default);
 
 var fireBusEvent = (event, payload) => {
     window.bus.$emit(event, payload);
