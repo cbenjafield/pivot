@@ -40,7 +40,9 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
+            "App\\": "app/",
+            "Benjafield\\": "app/Libraries/",
+            "Benjafield\\Paymentsense\\": "app/Libraries/Paymentsense/src/"
         },
         "classmap": [
             "database/seeds",
