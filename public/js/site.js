@@ -34230,15 +34230,77 @@ window.randomString = function (length) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+var _require = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"),
+    Axios = _require["default"];
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 window.bus = new Vue();
 var app = new Vue({
   el: '#site',
+  data: {
+    contactFormErrors: [],
+    success: {},
+    error: {}
+  },
   methods: {
     toggleMenu: function toggleMenu() {
       document.querySelector('body').classList.toggle('menu-open');
+    },
+    submitContactForm: function submitContactForm(event) {
+      var _this = this;
+
+      var form = event.target;
+      var formData = new FormData(form);
+      this.contactFormErrors = [];
+      delete this.success[form.getAttribute('id')];
+      delete this.error[form.getAttribute('id')];
+      axios.post(event.target.getAttribute('action'), formData).then(function (response) {
+        // Successful response...
+        _this.success[form.getAttribute('id')] = "Your message has been sent. We'll get back to you as soon as possible.";
+
+        _this.$forceUpdate();
+      })["catch"](function (error) {
+        // Unsuccessful response...
+        if (error.response) {
+          if (error.response.data.errors) {
+            _this.contactFormErrors = error.response.data.errors;
+          }
+
+          _this.error[form.getAttribute('id')] = "An error occurred and your message could not be sent.";
+
+          _this.$forceUpdate();
+        }
+      });
+    },
+    contactFormError: function contactFormError(field) {
+      if (typeof this.contactFormErrors[field] != 'undefined' && this.contactFormErrors[field].length) {
+        return this.contactFormErrors[field][0];
+      }
+
+      return null;
+    },
+    successMessage: function successMessage(formId) {
+      console.log(formId);
+      console.log(_typeof(this.success[formId]));
+
+      if (typeof this.success[formId] != 'undefined' && this.success[formId]) {
+        console.log(this.success[formId]);
+        return this.success[formId];
+      }
+
+      return null;
+    },
+    errorMessage: function errorMessage(formId) {
+      if (typeof this.error[formId] != 'undefined' && this.error[formId]) {
+        console.log(this.error[formId]);
+        return this.error[formId];
+      }
+
+      return null;
     }
   }
 });

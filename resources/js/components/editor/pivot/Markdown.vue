@@ -52,9 +52,6 @@ export default {
                 content: this.content
             };
         },
-        getMarkdown() {
-            return this.$refs.textContent.invoke('getMarkdown');
-        },
         change() {
             this.content = this.getMarkdown();
             this.$forceUpdate();
@@ -62,7 +59,6 @@ export default {
         setContent() {
             if(this.block.content) {
                 this.content = this.block.content;
-                this.$refs.textContent.invoke('setMarkdown', this.content);
             }
         }
     }

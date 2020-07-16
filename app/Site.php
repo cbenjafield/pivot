@@ -168,8 +168,23 @@ class Site extends Model
         return $this->hasMany(Menu::class);
     }
 
+    /**
+     * Define the site's relationship to media items.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function media()
     {
         return $this->hasMany(Media::class);
+    }
+
+    /**
+     * Define the site's relationship to contact forms.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function contactForms()
+    {
+        return $this->hasMany(ContactForm::class);
     }
 }

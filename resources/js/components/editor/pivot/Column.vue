@@ -112,6 +112,13 @@ export default {
                 content: null
             });
         },
+        contact() {
+            this.blocks.push({
+                id: `contact-${window.randomString(8)}`,
+                type: 'pivot-contact',
+                content: null
+            });
+        },
         json() {
             var object = {
                 id: this.column.id,
@@ -147,7 +154,7 @@ export default {
                 if(newBlock.type == 'pivot-passrates') {
                     newBlock.heading = block.heading;
                 }
-                if(newBlock.type == 'pivot-image') {
+                if(newBlock.type == 'pivot-image' || newBlock.type == 'pivot-contact') {
                     newBlock.content = block.content;
                 }
 

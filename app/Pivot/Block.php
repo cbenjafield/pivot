@@ -2,6 +2,7 @@
 
 namespace App\Pivot;
 
+use App\ContactForm;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Str;
 use ParsedownExtra;
@@ -50,13 +51,16 @@ class Block
 
     public function render()
     {
+        $renderable = $this->getRenderableData();
+
         return View::first([
             $this->website->themePath("components.{$this->type}"),
             "default.components.{$this->type}",
             "default.components.fallback",
         ], [
             'block' => $this,
-            'website' => $this->website
+            'website' => $this->website,
+            'renderable' => $renderable,
         ])->render();
     }
 
@@ -124,5 +128,20 @@ class Block
         ];
 
         $this->setAttribute('bars', $bars);
+    }
+
+    protected function getRenderableData()
+    {
+        switch($this->type) {
+            default:
+                return null;
+            case 'pivot-contact':
+                return $this->getContactForm();
+        }
+    }
+
+    protected function getContactForm()
+    {
+        return ContactForm::find($this->content['form']);
     }
 }

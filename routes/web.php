@@ -13,3 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
+
+Route::post('contact/{form}', 'ContactController@submitForm');

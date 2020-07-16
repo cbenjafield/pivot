@@ -42,5 +42,6 @@ Route::group(['prefix' => 'websites/{website}/menus'], function () {
 
 Route::group(['prefix' => 'websites/{website}'], function () {
     Route::get('media/all', 'MediaController@all')->name('media.all');
-    Route::resource('media', 'MediaController')->names('media.');
+    Route::resource('media', 'MediaController')->names('media');
+    Route::resource('contact', 'ContactController')->names('contact');
 });
