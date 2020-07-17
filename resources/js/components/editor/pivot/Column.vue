@@ -119,6 +119,13 @@ export default {
                 content: null
             });
         },
+        price() {
+            this.blocks.push({
+                id: `price-${window.randomString(8)}`,
+                type: 'pivot-price',
+                content: null
+            })
+        },
         json() {
             var object = {
                 id: this.column.id,
@@ -154,9 +161,10 @@ export default {
                 if(newBlock.type == 'pivot-passrates') {
                     newBlock.heading = block.heading;
                 }
-                if(newBlock.type == 'pivot-image' || newBlock.type == 'pivot-contact') {
+                if(newBlock.type == 'pivot-image' || newBlock.type == 'pivot-contact' || newBlock.type == 'pivot-price') {
                     newBlock.content = block.content;
                 }
+
 
                 this.blocks.push(newBlock);
             });

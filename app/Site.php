@@ -187,4 +187,14 @@ class Site extends Model
     {
         return $this->hasMany(ContactForm::class);
     }
+
+    /**
+     * Define the relationship to products.
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }

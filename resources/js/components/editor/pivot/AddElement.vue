@@ -35,6 +35,10 @@
                     <i class="far fa-map-marker-alt text-3xl text-gray-500 block mb-4"></i>
                     <span class="block font-medium">Address Block</span>
                 </div>
+                <div class="p-4 cursor-pointer bg-white rounded-md shadow hover:bg-indigo-50 transition-colors duration-200" @click.prevent="add('price')">
+                    <i class="far fa-pound-sign text-3xl text-gray-500 block mb-4"></i>
+                    <span class="block font-medium">Price</span>
+                </div>
             </div>
         </div>
     </div>

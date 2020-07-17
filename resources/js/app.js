@@ -27,6 +27,7 @@ Vue.component('pivot-md', require('./components/editor/pivot/Markdown.vue').defa
 Vue.component('pivot-passrates', require('./components/editor/pivot/PassRates.vue').default);
 Vue.component('pivot-address', require('./components/editor/pivot/Address.vue').default);
 Vue.component('pivot-contact', require('./components/editor/pivot/Contact.vue').default);
+Vue.component('pivot-price', require('./components/editor/pivot/Price.vue').default);
 
 Vue.component('image-chooser', require('./components/media/Chooser.vue').default);
 Vue.component('add-element', require('./components/editor/pivot/AddElement.vue').default);
