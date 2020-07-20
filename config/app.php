@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        App\Providers\CheckoutServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -231,6 +232,8 @@ return [
         'Article' => App\Pivot\Facades\Article::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Block' => App\Pivot\Facades\Block::class,
+        'Basket' => Benjafield\Checkout\Facades\Basket::class,
+        'Checkout' => Benjafield\Checkout\Facades\Checkout::class,
 
     ],
 

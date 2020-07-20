@@ -65,6 +65,7 @@ export default {
         return {
             isInsertOpen: false,
             blocks: [],
+            products: [],
         }
     },
     computed: {
@@ -74,6 +75,7 @@ export default {
     },
     mounted() {
         this.setContent();
+        this.fetchProducts();
     },
     methods: {
         insertBlock(type) {
@@ -144,6 +146,11 @@ export default {
                 }
 
                 this.blocks.push(newBlock);
+            });
+        },
+        fetchProducts() {
+            axios.get(`/websites/${window.siteId}/products`).then(response => {
+                this.$root.products = response.data.products || [];
             });
         }
     }

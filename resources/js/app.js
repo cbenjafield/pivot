@@ -46,6 +46,7 @@ const app = new Vue({
         isNavOpen: false,
         isArticleSaveOpen: false,
         articleErrors: null,
+        products: [],
     },
     methods: {
         submitForm(selector) {
@@ -74,7 +75,7 @@ const app = new Vue({
                     .replace(/\-\-+/g, '-')         // Replace multiple - with single -
                     .replace(/^-+/, '')             // Trim - from start of text
                     .replace(/-+$/, '');            // Trim - from end of text
-                
+
                 if(!input.value) input.value = value;
             });
         },

@@ -2,7 +2,6 @@
 
 namespace Benjafield\Checkout;
 
-use App\Checkout\Product;
 use Benjafield\Checkout\Exceptions\InvalidItemIDException;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Session\SessionManager;
@@ -27,13 +26,6 @@ class Basket
 	private $events;
 
 	/**
-	 * Store the basket name.
-	 *
-	 * @var string
-	 */
-	private $basketName = 'basket';
-
-	/**
 	 * Basket constructor.
 	 *
 	 * @param \Illuminate\Session\SessionManager      $session
@@ -43,7 +35,12 @@ class Basket
 	{
 		$this->session = $session;
 		$this->events = $events;
-	}
+    }
+
+    public function basketName()
+    {
+        return 'basket_' . request('website')->id;
+    }
 
 	/**
 	 * Add an item to the cart.
@@ -70,7 +67,7 @@ class Basket
 
 		$this->events->dispatch('basket.added', $basketItem);
 
-		$this->session->put($this->basketName, $contents);
+		$this->session->put($this->basketName(), $contents);
 
 		return $basketItem;
 	}
@@ -126,7 +123,7 @@ class Basket
 
 		$this->events->dispatch('basket.updated', $basketItem);
 
-		$this->session->put($this->basketName, $contents);
+		$this->session->put($this->basketName(), $contents);
 
 		return $basketItem;
 	}
@@ -147,7 +144,7 @@ class Basket
 
 		$this->events->dispatch('basket.removed', $basketItem);
 
-		$this->session->put($this->basketName, $contents);
+		$this->session->put($this->basketName(), $contents);
 	}
 
 	/**
@@ -172,7 +169,7 @@ class Basket
 	 */
 	public function destroy()
 	{
-		$this->session->remove($this->basketName);
+		$this->session->remove($this->basketName());
 	}
 
 	/**
@@ -182,9 +179,9 @@ class Basket
 	 */
 	public function contents()
 	{
-		if(is_null($this->session->get($this->basketName))) return new Collection([]);
+		if(is_null($this->session->get($this->basketName()))) return new Collection([]);
 
-		return $this->session->get($this->basketName);
+		return $this->session->get($this->basketName());
 	}
 
 	/**
@@ -268,8 +265,8 @@ class Basket
 	 */
 	protected function getContents()
 	{
-		$contents = $this->session->has($this->basketName)
-			? $this->session->get($this->basketName)
+		$contents = $this->session->has($this->basketName())
+			? $this->session->get($this->basketName())
 			: new Collection;
 
 		return $contents;

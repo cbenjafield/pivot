@@ -4,6 +4,16 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+Vue.component(
+    'basket-button',
+    require('./components/ui/BasketButton.vue').default
+);
+
+Vue.component(
+    'checkout-form',
+    require('./components/checkout/Checkout.vue').default
+);
+
 window.bus = new Vue;
 
 const app = new Vue({

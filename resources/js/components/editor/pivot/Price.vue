@@ -12,7 +12,11 @@
                 </div>
             </div>
             <div class="border border-gray-200 p-2">
-                
+                <div class="rounded-md shadow-sm">
+                    <select v-model="itemid" class="block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" @change="changePrice">
+                        <option v-for="product in $root.products" :key="product.id" :value="product.id">{{ product.name }} - {{ product.price }}</option>
+                    </select>
+                </div>
             </div>
             <div class="mt-2 flex items-center text-sm">
                 <div class="flex-1 mr-6">
@@ -44,7 +48,7 @@ export default {
         this.setContent();
     },
     created() {
-        
+
     },
     methods: {
         remove() {
@@ -58,7 +62,7 @@ export default {
                     itemid: this.itemid,
                     description: this.description,
                     title: this.title,
-                    price: this.price, 
+                    price: this.price,
                 }
             };
         },
@@ -72,6 +76,12 @@ export default {
         },
         chooseImage() {
             window.bus.$emit('toggle-image-chooser', this.block.id);
+        },
+        changePrice() {
+            let product = this.$root.products.find(prod => prod.id === this.itemid);
+            this.price = product.price;
+            this.description = product.description;
+            this.title = product.name;
         }
     }
 }

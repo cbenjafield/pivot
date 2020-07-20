@@ -106,7 +106,7 @@ class Block
                 'year' => (integer) date('Y', strtotime("-{$i} month")),
             ];
         }
-        
+
         asort($months);
 
         $values = [93, 94, 90];
@@ -143,5 +143,10 @@ class Block
     protected function getContactForm()
     {
         return ContactForm::find($this->content['form']);
+    }
+
+    public function toJson()
+    {
+        return json_encode($this->attributes);
     }
 }
