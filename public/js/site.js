@@ -1913,9 +1913,74 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {//
+    return {
+      email: null,
+      phone: null,
+      notes: null,
+      pupil_name: null
     };
   }
 });
@@ -22192,9 +22257,273 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "flex items-start" }, [
+    _c("div", { staticClass: "flex-1 mr-6" }, [
+      _c("div", { staticClass: "shadow rounded-md overflow-hidden" }, [
+        _c(
+          "form",
+          { staticClass: "p-4 bg-white", attrs: { id: "checkout-form" } },
+          [
+            _c(
+              "div",
+              { staticClass: "sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start" },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
+                    attrs: { for: "email" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Your email address\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "max-w-lg rounded-md shadow-sm sm:max-w-xs"
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.email,
+                            expression: "email"
+                          }
+                        ],
+                        staticClass:
+                          "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                        attrs: { id: "email", type: "email", required: "" },
+                        domProps: { value: _vm.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.email = $event.target.value
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
+                    attrs: { for: "phone" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Your phone number\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "max-w-lg rounded-md shadow-sm sm:max-w-xs"
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.phone,
+                            expression: "phone"
+                          }
+                        ],
+                        staticClass:
+                          "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                        attrs: { id: "phone", type: "tel", required: "" },
+                        domProps: { value: _vm.phone },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.phone = $event.target.value
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
+                    attrs: { for: "pupil_name" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Pupil's name\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "max-w-lg rounded-md shadow-sm sm:max-w-xs"
+                    },
+                    [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.pupil_name,
+                            expression: "pupil_name"
+                          }
+                        ],
+                        staticClass:
+                          "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                        attrs: { id: "pupil_name", type: "text", required: "" },
+                        domProps: { value: _vm.pupil_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.pupil_name = $event.target.value
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "mt-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start"
+              },
+              [
+                _c(
+                  "label",
+                  {
+                    staticClass:
+                      "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2",
+                    attrs: { for: "phone" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                        Is there anything we should know?\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "mt-1 sm:mt-0 sm:col-span-2" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "max-w-lg rounded-md shadow-sm sm:max-w-xs"
+                    },
+                    [
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.notes,
+                            expression: "notes"
+                          }
+                        ],
+                        staticClass:
+                          "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5",
+                        attrs: { rows: "5" },
+                        domProps: { value: _vm.notes },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.notes = $event.target.value
+                          }
+                        }
+                      })
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "w-1/3" }, [
+      _c("div", { staticClass: "shadow-md rounded-md overflow-hidden" }, [
+        _c("div", { staticClass: "bg-white p-4" }, [
+          _c("h3", { staticClass: "text-xl font-bold mb-4" }, [
+            _vm._v("Summary")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "basket-summary" })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "bg-gray-200 p-4" }, [
+          _c(
+            "button",
+            {
+              staticClass:
+                "w-full block p-3 bg-black text-white font-bold text-center"
+            },
+            [
+              _c("i", { staticClass: "fab fa-paypal fa-fw mr-2" }),
+              _vm._v(" Pay with PayPal\n                ")
+            ]
+          )
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
