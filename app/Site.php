@@ -62,6 +62,8 @@ class Site extends Model
             'postcode',
             'tld',
             'organisation_id',
+            'paypal_client_id',
+            'paypal_client_secret',
         ]), [
             'uses_https' => $request->filled('uses_https') ? 1 : 0,
             'uses_www'   => $request->filled('uses_www')   ? 1 : 0,
@@ -196,5 +198,29 @@ class Site extends Model
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    /**
+     * Paypal Credentials
+     * 
+     * Return the PayPal API keys for the site. If no details are supplied,
+     * the PayPal tokens supplied for the organisation the website belongs
+     * to will be used. Otherwise, an array with null values will return.
+     * 
+     * @return array
+     */
+    public function paypalCredentials()
+    {
+        if(! empty($this->paypal_client_id) && ! empty($this->paypal_client_secret)) {
+            return [
+                'client_id' => $this->paypal_client_id,
+                'secret' => $this->paypal_client_secret,
+            ];
+        }
+
+        return [
+            'client_id' => $this->organisation->paypal_client_id ?? null,
+            'secret' => $this->organisation->paypal_client_secret ?? null,
+        ];
     }
 }

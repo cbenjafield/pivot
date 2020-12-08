@@ -9,11 +9,11 @@ use Basket;
 
 class CreateOrder
 {
-    public static function createOrder()
+    public static function createOrder($orderId)
     {
         $request = new OrdersCreateRequest();
         $request->prefer('return=representation');
-        $request->body = self::buildRequestBody();
+        $request->body = self::buildRequestBody($orderId);
 
         $client = PayPalClient::client();
 
@@ -22,19 +22,19 @@ class CreateOrder
         return $response;
     }
 
-    protected static function buildRequestBody()
+    protected static function buildRequestBody($orderId)
     {
         return [
             'intent' => 'CAPTURE',
             'application_context' => [
-                'return_url' => url('paypal/complete'),
-                'cancel_url' => url('step-3?paypal=true&status=cancel'),
+                'return_url' => url('checkout/complete'),
+                'cancel_url' => url('/checkout?paypal-status=cancel'),
                 'user_action' => 'PAY_NOW',
             ],
             'purchase_units' => [
                 [
-                    'reference_id' => Checkout::get('transaction_id'),
-                    'custom_id' => Checkout::get('transaction_id'),
+                    'reference_id' => $orderId,
+                    'custom_id' => $orderId,
                     'description' => Basket::description(),
                     'amount' => [
                         'currency_code' => 'GBP',

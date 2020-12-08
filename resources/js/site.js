@@ -14,6 +14,11 @@ Vue.component(
     require('./components/checkout/Checkout.vue').default
 );
 
+Vue.component(
+    'basket-contents',
+    require('./components/checkout/BasketContents.vue').default
+);
+
 window.bus = new Vue;
 
 const app = new Vue({
@@ -22,6 +27,7 @@ const app = new Vue({
         contactFormErrors: [],
         success: {},
         error: {},
+        basketCount: 0
     },
     methods: {
         toggleMenu() {

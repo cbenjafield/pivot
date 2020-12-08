@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tenants\Checkout;
 
 use App\Http\Controllers\Controller;
+use App\Wolf\Order;
 use Illuminate\Http\Request;
 use Checkout;
 use Basket;
@@ -19,5 +20,12 @@ class CheckoutController extends Controller
         }
 
         return Theme::view('checkout', compact('website'));
+    }
+
+    public function confirmation(Order $order)
+    {
+        $website = request('website');
+
+        return Theme::view('confirmation', compact('website', 'order'));
     }
 }

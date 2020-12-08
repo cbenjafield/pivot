@@ -128,7 +128,7 @@ class BasketItem implements Arrayable, Jsonable
 	 */
 	public function getSingularType()
 	{
-		return ($this->type == 'App\\Service') ? 'service' : 'product';
+		return ($this->type == 'service') ? 'service' : 'product';
 	}
 
 	/**

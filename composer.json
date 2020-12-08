@@ -15,9 +15,13 @@
         "guzzlehttp/guzzle": "^6.5",
         "intervention/image": "^2.5",
         "intervention/imagecache": "^2.4",
+        "juststeveking/laravel-postcodes": "^1.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "paypal/paypal-checkout-sdk": "^1.0",
+        "paypal/rest-api-sdk-php": "^1.14",
+        "propaganistas/laravel-phone": "^4.2",
         "tinify/tinify": "^1.5"
     },
     "require-dev": {

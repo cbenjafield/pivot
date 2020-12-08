@@ -15,9 +15,11 @@ class PayPalClient
 
     public static function environment()
     {
-        $clientId = env('PAYPAL_CLIENT_ID');
-        $clientSecret = env('PAYPAL_CLIENT_SECRET');
+        $credentials = request('website')->paypalCredentials();
 
-        return new ProductionEnvironment($clientId, $clientSecret);
+        return new SandboxEnvironment(
+            $credentials['client_id'],
+            $credentials['secret']
+        );
     }
 }

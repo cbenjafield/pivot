@@ -34,6 +34,8 @@ class Organisation extends Model
             'locality',
             'city',
             'postcode',
+            'paypal_client_id',
+            'paypal_client_secret',
         ]), $params);
     }
 

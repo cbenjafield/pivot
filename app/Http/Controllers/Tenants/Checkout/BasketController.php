@@ -36,4 +36,17 @@ class BasketController extends Controller
             'item' => $item,
         ], 200);
     }
+
+    public function update($item)
+    {
+        if(request()->has('quantity')) {
+            Basket::update($item, request('quantity'));
+        }
+
+        return response()->json([
+            'total' => Basket::total(),
+            'subtotal' => Basket::total(false),
+            'fee' => Basket::fee(),
+        ], 200);
+    }
 }

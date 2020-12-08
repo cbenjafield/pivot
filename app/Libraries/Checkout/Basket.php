@@ -76,7 +76,7 @@ class Basket
 	{
 		$contents = $this->getContents();
 
-		$services = $contents->where('type', 'App\\Service')->count();
+		$services = $contents->where('type', 'service')->count();
 
 		return !! $services;
 	}
@@ -85,7 +85,7 @@ class Basket
 	{
 		$contents = $this->getContents();
 
-		$products = $contents->where('type', 'App\\Product')->count();
+		$products = $contents->where('type', 'product')->count();
 
 		return !! $products;
 	}
@@ -216,7 +216,7 @@ class Basket
 			$total = $total + 1.99;
 		}
 
-		if($this->hasServices() && $fee) {
+		if($fee) {
 			$total = $total + $total * 0.045;
 		}
 
@@ -452,6 +452,11 @@ class Basket
         }
 	}
 
+	public function fee()
+	{
+		return number_format($this->total() - $this->total(false), 2);
+	}
+
 	public function paypalItems()
 	{
 		$items = [];
@@ -470,17 +475,15 @@ class Basket
 			$items[] = $ppItem;
 		}
 
-		if($this->hasServices()) {
-			$items[] = [
-				'name' => 'Management & Protection Fee',
-				'sku' => 'mmp45',
-				'unit_amount' => [
-					'currency_code' => 'GBP',
-					'value' => number_format($this->total() - $this->total(false), 2),
-				],
-				'quantity' => 1
-			];
-		}
+		$items[] = [
+			'name' => 'Management & Protection Fee',
+			'sku' => 'mmp45',
+			'unit_amount' => [
+				'currency_code' => 'GBP',
+				'value' => $this->fee(),
+			],
+			'quantity' => 1
+		];
 
 		return $items;
 	}

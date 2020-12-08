@@ -10,10 +10,10 @@
     </div>
 </div>
 
-<div class="py-10">
+<div class="py-10 page-content">
 
     <div class="container mx-auto">
-        <checkout-form></checkout-form>
+    <checkout-form :contents="{{ Basket::contents() }}" :subtotal="{{ Basket::total(false) }}" :total="{{ Basket::total() }}" :fee="{{ Basket::fee() }}" :paypal-status="{{ request()->filled('paypal-status') ? "'".request('paypal-status')."'" : 'null' }}" :inputs="{{ session()->has('previous_input') ? session('previous_input') : 'null' }}"></checkout-form>
     </div>
 
 </div>

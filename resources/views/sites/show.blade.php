@@ -60,6 +60,47 @@
             </div>
         </form>
 
+        <form method="POST" action="{{ route('sites.paypal', $website->id) }}" id="sitePaypalForm">
+            <div class="shadow sm:rounded-md sm:overflow-hidden border border-gray-200 mt-6">
+                <div class="px-4 py-5 bg-white sm:p-6">
+                    <h3 class="font-medium text-gray-900 mb-6 text-xl pb-4 border-b border-gray-200">PayPal Integration</h3>
+
+                    <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
+                        <label for="paypal_client_id" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px md:pt-2">
+                            Client ID
+                        </label>
+                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                            <div class="max-w-lg rounded-md shadow-sm">
+                                <input id="paypal_client_id" name="paypal_client_id" value="{{ old('paypal_client_id', $website->paypal_client_id) }}" required maxlength="255" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            </div>
+                            @error('paypal_client_id')
+                                <span class="text-red-600 text-xs mt-1 block">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+                        <label for="paypal_client_secret" class="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2">
+                            Secret
+                        </label>
+                        <div class="mt-1 sm:mt-0 sm:col-span-2">
+                            <div class="max-w-lg rounded-md shadow-sm">
+                                <input id="paypal_client_secret" name="paypal_client_secret" value="{{ old('paypal_client_secret', $website->paypal_client_secret) }}" required maxlength="255" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                    @csrf
+                    @method('PUT')
+                    <span class="inline-flex rounded-md shadow-sm">
+                        <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+                            Save
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+
         <div class="shadow sm:rounded-md sm:overflow-hidden mt-10 border border-red-300">
             <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start">
