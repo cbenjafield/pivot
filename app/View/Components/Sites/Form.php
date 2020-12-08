@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Sites;
 
+use App\Organisation;
 use App\Site;
 use Illuminate\View\Component;
 
@@ -16,6 +17,8 @@ class Form extends Component
     public $id;
 
     public $ref;
+
+    public $organisations;
 
     /**
      * Create a new component instance.
@@ -35,6 +38,7 @@ class Form extends Component
         $this->action = $this->site->exists ?
                                     route('sites.update', $this->site->id) : 
                                     route('sites.store');
+        $this->organisations = Organisation::orderBy('name', 'asc')->get();
     }
 
     /**
