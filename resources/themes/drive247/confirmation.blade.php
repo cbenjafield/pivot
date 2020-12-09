@@ -14,8 +14,8 @@
 
     <div class="container mx-auto">
         
-        <div class="flex items-start flex-wrap -mx-6">
-            <div class="w-2/3 px-6">
+        <div class="sm:flex sm:items-start sm:flex-wrap -mx-6">
+            <div class="sm:w-2/3 px-6">
                 <div>
                     <h2 class="text-2xl text-gray-900 font-bold">Thank you for choosing <span class="text-red-700">{{ $website->title }}</span></h2>
                     <p class="text-lg text-gray-700 mt-4">Your payment has been processed and is now on our system. We will get back to you ASAP to get your driving lessons booked in.</p>
