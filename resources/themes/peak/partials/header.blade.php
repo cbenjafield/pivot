@@ -1,5 +1,8 @@
 <header class="relative border-b border-gray-200 shadow-lg z-50">
-    <div class="border-t-4 border-teal-500 relative">
+    <div class="relative">
+        <div class="h-12 bg-teal-500 flex items-center md:justify-end">
+
+        </div>
         <div class="container flex items-center h-24">
             <div class="flex-1 md:flex-none md:w-1/5">
                 <div class="logo py-5">
