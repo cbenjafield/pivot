@@ -1,13 +1,13 @@
 <header class="relative border-b border-gray-200 shadow-lg z-50">
-    <div class="border-t-4 border-red-600 relative">
+    <div class="border-t-4 border-teal-500 relative">
         <div class="container flex items-center h-24">
             <div class="flex-1 md:flex-none md:w-1/5">
                 <div class="logo py-5">
                     {!! Theme::logo() !!}
-                    <a href="tel:08452412884" class="flex items-center font-bold text-gray-900 text-lg md:text-sm mt-2">
+                    <a href="tel:01908764677" class="flex items-center font-bold text-gray-900 text-lg md:text-sm mt-2">
                         <span class="hidden lg:inline-block">CALL:</span>
                         <span class="lg:hidden"><i class="far fa-phone-alt"></i></span>
-                        <span class="text-red-600 ml-1 lg:ml-3">0845 241 2884</span>
+                        <span class="text-teal-500 ml-1 lg:ml-3">01908 764677</span>
                     </a>
                 </div>
             </div>
