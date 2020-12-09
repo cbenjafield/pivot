@@ -20,8 +20,6 @@ class CustomDomain
     {
         $domain = $this->processDomain($request);
 
-        dd($domain);
-
         $website = Site::where('tld', $domain)->firstOrFail();
 
         // Append the domain and site to the request object
