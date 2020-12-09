@@ -18,7 +18,7 @@ class Theme
 
     public function styles()
     {
-        return asset(mix("themes/{$this->website->theme}/css/theme.css"));
+        return asset("themes/{$this->website->theme}/css/theme.css");
     }
 
     public function layout($name)
