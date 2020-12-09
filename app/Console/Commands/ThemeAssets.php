@@ -63,6 +63,7 @@ class ThemeAssets extends Command
     {
         return [
             public_path('themes/drive247/images') => resource_path('themes/drive247/images'),
+            public_path('themes/peak/images') => resource_path('themes/peak/images'),
         ];
     }
 }
