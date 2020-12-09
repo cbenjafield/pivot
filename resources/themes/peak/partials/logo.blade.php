@@ -4,6 +4,6 @@
 </a>
 @else
 <a href="{{ $website->domain() }}" class="flex items-center">
-    <img src="{{ Theme::image('drive247-logo-standalone.png') }}" alt="{{ $website->title }} Logo" class="h-8 block">
+    <img src="{{ Theme::image('peakdriving-logo.png') }}" alt="{{ $website->title }} Logo" class="h-8 block">
 </a>
 @endif
