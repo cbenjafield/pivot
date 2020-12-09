@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="flex items-start flex-wrap space-y-5">
+        <div class="sm:flex sm:items-start flex-wrap space-y-5">
             <div class="flex-1 pt-6">
                 <div v-if="hasItems">
                     <div class="border-b border-gray-200 py-4 grid grid-cols-4 gap-4" v-for="item in basket" :key="item.itemId">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-1/3 ml-10">
+            <div class="sm:w-1/3 sm:ml-10">
                 <div class="rounded-md shadow overflow-hidden">
                     <div class="bg-white p-3 space-y-3">
                         <div class="grid grid-cols-3 gap-3 border-b border-gray-200 pb-3">

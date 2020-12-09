@@ -1,6 +1,6 @@
 <template>
-    <div class="flex items-start">
-        <div class="flex-1 mr-6">
+    <div class="sm:flex sm:items-start space-y-5">
+        <div class="sm:flex-1 sm:mr-6">
             <div class="shadow rounded-md overflow-hidden">
                 <div class="p-4 pb-0">
                     <h3 class="text-xl font-bold mb-4">Payment Details</h3>
@@ -73,7 +73,7 @@
                 </form>
             </div>
         </div>
-        <div class="w-1/3">
+        <div class="sm:w-1/3">
             <div class="shadow-md rounded-md overflow-hidden">
                 <div class="bg-white p-4">
                     <h3 class="text-xl font-bold mb-4">Summary</h3>
