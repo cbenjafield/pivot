@@ -74,7 +74,7 @@
             &:after {
                 content: " ";
                 @apply block absolute inset-0;
-                background: url(https://pivot.hs/storage/media/84c0edad-9529-4918-bedb-c26014414a3e.png);
+                background: url('/themes/peak/images/dots.png');
             }
         }
     }
@@ -135,13 +135,13 @@
 .page {
     &-header {
         @apply relative;
-        background: theme('colors.gray.900') url(/themes/drive247/images/page-title-background.jpg) no-repeat 50%/cover;
+        background: theme('colors.gray.900') url(/themes/peak/images/page-banner.jpg) no-repeat 50%/cover;
 
         &:before {
             display: block;
             content: " ";
             @apply absolute inset-0;
-            background: rgba(black, .4) url(/storage/media/84c0edad-9529-4918-bedb-c26014414a3e.png) repeat;
+            background: rgba(black, .4) url(/themes/peak/images/dots.png) repeat;
         }
     }
 }
