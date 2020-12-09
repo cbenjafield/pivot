@@ -1,5 +1,5 @@
 <div class="hero py-32 bg-gray-900 text-white relative">
-    <div class="container relative">
+    <div class="container relative z-40">
         <h1 class="text-5xl font-bold">{!! $block->headingText !!}</h1>
         @if(!empty($block->bullets))
         <ul class="list-checks mt-6">
