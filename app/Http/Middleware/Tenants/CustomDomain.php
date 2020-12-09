@@ -16,7 +16,8 @@ class CustomDomain
      */
     public function handle($request, Closure $next)
     {
-        $domain = $request->getHost();
+        $domain = $this->processDomain($request);
+
         $website = Site::where('tld', $domain)->firstOrFail();
 
         // Append the domain and site to the request object
@@ -28,5 +29,18 @@ class CustomDomain
         ]);
 
         return $next($request);
+    }
+
+    /**
+     * Pluck the domain from the requested host.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return string
+     */
+    protected function processDomain($request)
+    {
+        $host = $request->getHost();
+        $info = parse_url($host);
+        return $info['host'] ?? $host;
     }
 }
