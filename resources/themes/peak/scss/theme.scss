@@ -52,6 +52,12 @@
     background-size: cover;
     background-position: 50%;
 
+    &:after {
+        content: " ";
+        @apply block absolute inset-0;
+        background: url('/themes/peak/images/dots.png');
+    }
+
     ul {
         li {
             margin-bottom: theme('margin.5');
