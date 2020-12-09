@@ -30,7 +30,7 @@ class UpdateRequest extends FormRequest
                 'required',
                 'string',
                 'alpha_dash',
-                Rule::unique('articles', 'slug')->ignore($this->article),
+                // Rule::unique('articles', 'slug')->ignore($this->article),
             ],
         ];
     }
