@@ -4,6 +4,8 @@ namespace App\Http\Middleware\Tenants;
 
 use App\Site;
 use Closure;
+use Pdp\Parser;
+use Utopia\Domains\Domain;
 
 class CustomDomain
 {
@@ -42,7 +44,9 @@ class CustomDomain
     protected function processDomain($request)
     {
         $host = $request->getHost();
-        $info = parse_url($host);
-        return $info['host'] ?? $host;
+        
+        $domain = new Domain($host);
+
+        return $domain->getRegisterable();
     }
 }
