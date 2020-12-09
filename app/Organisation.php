@@ -14,6 +14,24 @@ class Organisation extends Model
 
     protected $guarded = [];
 
+    protected static function booted()
+    {
+        static::created(function ($model) {
+            $model->refreshViewCache();
+        });
+
+        static::updated(function ($model) {
+            $model->refreshViewCache();
+        });
+    }
+
+    public function refreshViewCache()
+    {
+        $organisations = Cache::rememberForever('organisations', function () {
+            return Organisation::orderBy('name', 'asc')->get();
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

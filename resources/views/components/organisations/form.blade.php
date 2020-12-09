@@ -67,7 +67,7 @@
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-2">
                         <div class="max-w-lg rounded-md shadow-sm">
-                            <input id="paypal_client_id" name="paypal_client_id" value="{{ old('paypal_client_id', $organisation->paypal_client_id) }}" required maxlength="255" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            <input id="paypal_client_id" name="paypal_client_id" value="{{ old('paypal_client_id', $organisation->paypal_client_id) }}" maxlength="255" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
                         @error('paypal_client_id')
                             <span class="text-red-600 text-xs mt-1 block">{{ $message }}</span>
@@ -80,7 +80,7 @@
                     </label>
                     <div class="mt-1 sm:mt-0 sm:col-span-2">
                         <div class="max-w-lg rounded-md shadow-sm">
-                            <input id="paypal_client_secret" name="paypal_client_secret" value="{{ old('paypal_client_secret', $organisation->paypal_client_secret) }}" required maxlength="255" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
+                            <input id="paypal_client_secret" name="paypal_client_secret" value="{{ old('paypal_client_secret', $organisation->paypal_client_secret) }}" maxlength="255" class="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
                         </div>
                         @error('paypal_client_secret')
                             <span class="text-red-600 text-xs mt-1 block">{{ $message }}</span>
