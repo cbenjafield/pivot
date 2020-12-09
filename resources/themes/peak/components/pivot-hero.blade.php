@@ -1,10 +1,4 @@
 <div class="hero py-32 bg-gray-900 text-white relative">
-    <div class="hero-video-wrapper absolute left-0 bottom-0 h-full w-full overflow-hidden hidden lg:block">
-        <video class="absolute bottom-0 z-0 w-full" autoplay loop muted id="herovideo">
-            <source src="{{ Theme::url('storage/media/9a1f2e3e-b061-44cb-9648-985790d62dd2.mp4') }}" type="video/mp4">
-        </video>
-    </div>
-
     <div class="container relative">
         <h1 class="text-5xl font-bold">{!! $block->headingText !!}</h1>
         @if(!empty($block->bullets))
@@ -16,7 +10,7 @@
         @endif
 
         <a href="{{ url('areas-we-cover') }}" class="mt-8 text-xl text-white bg-teal-500 rounded shadow-sm px-6 py-3 inline-block font-bold duration-300 transition-colors hover:bg-teal-800">
-            Find your area <i class="far fa-long-arrow-right ml-2"></i>
+            Find out more <i class="far fa-long-arrow-right ml-2"></i>
         </a>
     </div>
 </div>
