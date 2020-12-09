@@ -4,10 +4,10 @@
             <div class="container h-10 flex items-center md:justify-end">
                 <div class="text-right flex item-center justify-end space-x-4 h-10">
                     <a href="tel:01908764677" class="text-white font-semibold inline-flex items-center space-x-2">
-                        <i class="far fa-phone-alt"></i> 01908 764 677
+                        <i class="far fa-phone-alt"></i> <span>01908 764 677</span>
                     </a>
                     <a href="mailto:info@peakdriving.co.uk" class="text-white font-semibold inline-flex items-center space-x-2">
-                        <i class="far fa-at"></i> info@peakdriving.co.uk
+                        <i class="far fa-at"></i> <span>info@peakdriving.co.uk</span>
                     </a>
                 </div>
             </div>

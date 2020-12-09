@@ -33,7 +33,7 @@
 
     a {
         padding: theme('padding.2') theme('padding.3');
-        @apply rounded-md transition-colors duration-200 font-medium text-lg mr-4;
+        @apply rounded-md transition-colors duration-200 font-medium text-base mr-4;
 
         &:hover {
             background: theme('colors.teal.600');
