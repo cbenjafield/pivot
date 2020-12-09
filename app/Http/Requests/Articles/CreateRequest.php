@@ -30,7 +30,6 @@ class CreateRequest extends FormRequest
                 'required',
                 'alpha_dash',
                 'max:255',
-                Rule::unique('articles', 'slug')
             ]
         ];
     }
