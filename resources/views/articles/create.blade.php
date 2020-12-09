@@ -92,6 +92,6 @@
 
 @section('scripts')
 <script>
-window.siteId = {{ $article->site_id }};
+window.siteId = {{ $website->site_id }};
 </script>
 @endsection
