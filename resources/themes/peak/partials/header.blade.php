@@ -1,13 +1,15 @@
 <header class="relative border-b border-gray-200 shadow-lg z-50">
     <div class="relative">
-        <div class="h-10 bg-teal-500 flex items-center md:justify-end">
-            <div class="text-right flex item-center justify-end space-x-4">
-                <a href="tel:01908764677" class="text-white font-semibold inline-flex space-x-2">
-                    <i class="far fa-phone-alt"></i> 01908 764 677
-                </a>
-                <a href="mailto:info@peakdriving.co.uk" class="text-white font-semibold inline-flex space-x-2">
-                    <i class="far fa-at"></i> info@peakdriving.co.uk
-                </a>
+        <div class="h-10 bg-teal-500">
+            <div class="container h-10 flex items-center md:justify-end">
+                <div class="text-right flex item-center justify-end space-x-4 h-10">
+                    <a href="tel:01908764677" class="text-white font-semibold inline-flex items-center space-x-2">
+                        <i class="far fa-phone-alt"></i> 01908 764 677
+                    </a>
+                    <a href="mailto:info@peakdriving.co.uk" class="text-white font-semibold inline-flex items-center space-x-2">
+                        <i class="far fa-at"></i> info@peakdriving.co.uk
+                    </a>
+                </div>
             </div>
         </div>
         <div class="container flex items-center h-24">
