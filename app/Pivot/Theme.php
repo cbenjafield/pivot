@@ -43,6 +43,13 @@ class Theme
         return asset("themes/{$this->website->theme}/images/{$image}");
     }
 
+    public function url($path = null)
+    {
+        return ($this->website->uses_https)
+                        ? secure_url($path)
+                        : url($path);
+    }
+
     public function menu($position, $theme = 'default')
     {
         $menu = $this->website->menus()
