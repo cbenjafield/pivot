@@ -52,6 +52,11 @@ class Article extends Model
         return $query->whereNull('parent_id');
     }
 
+    public function scopePage(Builder $query)
+    {
+        return $query->whereIn('type', ['page']);
+    }
+
     public function scopePublished(Builder $query)
     {
         return $query->where('status', 'published')

@@ -15,4 +15,6 @@ Route::get('checkout/confirmation/{order}', 'Checkout\CheckoutController@confirm
 Route::get('/', 'WebsiteController@index');
 Route::post('contact/{form}', 'ContactController@submitForm');
 
+Route::get('xml-sitemap', 'SitemapController@xml');
+
 Route::fallback('WebsiteController@article');
