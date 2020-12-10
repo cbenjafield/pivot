@@ -44,6 +44,10 @@
                     </button>
                 </span>
             </div>
+
+            <div class="w-full mb-4">
+                <article-parent :site="article.site_id" :chosen-parent="article.parent" :article="article.id" v-model="parent_id" />
+            </div>
         </div>
     </div>
 </div>
@@ -62,7 +66,8 @@ export default {
             content: this.article.content,
             errors: [],
             isSaving: false,
-            status: this.article.status
+            status: this.article.status,
+            parent_id: this.article.parent_id
         };
     },
     methods: {
@@ -90,7 +95,8 @@ export default {
                 title: this.title,
                 slug: this.slug,
                 content: this.$refs.ArticleEditor.getContent(),
-                status: this.status
+                status: this.status,
+                parent_id: this.parent_id
             }).then(response => {
                 if(response.status == 200) {
                     this.isSaving = false;

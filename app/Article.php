@@ -23,6 +23,7 @@ class Article extends Model
             if($article->status == 'published' && empty($article->published_at)) {
                 $article->published_at = now();
             }
+            $article->makeUrl();
         });
     }
 
@@ -72,12 +73,20 @@ class Article extends Model
         }
 
         $parents = $this->parents->toArray();
-        $parents[] = $this->slug;
-        $url = implode('/', $parents);
+
+        $parentParts = [];
+
+        foreach($parents as $parent) {
+            $parentParts[] = $parent['slug'];
+        }
+
+        $parentParts[] = $this->slug;
+
+        // dd($parentParts);
+
+        $url = implode('/', $parentParts);
 
         $this->url = $url;
-
-        $this->save();
     }
 
     public function getParentsAttribute()
@@ -105,5 +114,22 @@ class Article extends Model
                 'website' => request('website')
             ]
         );
+    }
+
+    public function scopeSearch(Builder $query, $request)
+    {
+        $term = $request->term;
+
+        return 
+            $query->where(function ($where) use ($term) {
+                $where->where('title', 'LIKE', "%{$term}%")
+                            ->orWhere('slug', 'LIKE', "%{$term}%");
+            })
+            ->when($request->parent, function ($when, $parent) {
+                $when->whereNotIn('id', [$parent]);
+            })
+            ->when($request->article, function ($when, $article) {
+                $when->whereNotIn('id', [$article]);
+            });
     }
 }

@@ -9,7 +9,11 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        sans: ['Manrope', ...defaultTheme.fontFamily.sans],
+      },
+      colors: {
+        'true-dark-gray': '#252525',
+        'true-gray': '#474747'
       }
     }
   },

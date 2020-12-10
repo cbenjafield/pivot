@@ -39,6 +39,8 @@ class ThemeAssets extends Command
      */
     public function handle()
     {
+        $this->unlink();
+
         foreach ($this->links() as $link => $target) {
             if(file_exists($link)) {
                 $this->error("The [$link] link already exists.");
@@ -55,6 +57,20 @@ class ThemeAssets extends Command
     }
 
     /**
+     * Unlink the previous theme assets.
+     * 
+     * @return void
+     */
+    protected function unlink()
+    {
+        foreach($this->links() as $link => $target) {
+            if(file_exists($link)) {
+                unlink($link);
+            }
+        }
+    }
+
+    /**
      * Get the symbolic links that need to be created.
      * 
      * @return array
@@ -64,6 +80,7 @@ class ThemeAssets extends Command
         return [
             public_path('themes/drive247/images') => resource_path('themes/drive247/images'),
             public_path('themes/peak/images') => resource_path('themes/peak/images'),
+            public_path('themes/jda/images') => resource_path('themes/jda/images'),
         ];
     }
 }

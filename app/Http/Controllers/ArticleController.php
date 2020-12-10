@@ -85,6 +85,8 @@ class ArticleController extends Controller
      */
     public function show(Site $website, Article $article)
     {
+        $article->load('parent');
+        
         return $this->view('edit', compact('website', 'article'));
     }
 
@@ -108,5 +110,28 @@ class ArticleController extends Controller
         ));
 
         return response()->json([], 200);
+    }
+
+    /**
+     * Search for articles.
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Site  $website
+     * @return \Illuminate\Http\Response
+     */
+    public function search(Request $request, Site $website)
+    {
+        $this->validate($request, [
+            'term' => ['required', 'string', 'max:255'],
+        ]);
+
+        $articles = $website->articles()
+                                ->search($request)
+                                ->limit(10)
+                                ->get();
+        
+        return response()->json([
+            'articles' => $articles,
+        ], 200);
     }
 }

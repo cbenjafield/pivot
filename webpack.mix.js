@@ -17,7 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/site.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/site.scss', 'public/css')
-    .sass('resources/themes/peak/scss/theme.scss', 'public/themes/peak/css')
+    .sass('resources/themes/jda/scss/theme.scss', 'public/themes/jda/css')
     .options({
         processCssUrls: false,
         postCss: [

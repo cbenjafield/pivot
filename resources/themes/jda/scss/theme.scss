@@ -1,0 +1,176 @@
+// Theme
+@import 'pivot';
+
+.list {
+    &-arrows, &-checks {
+        li {
+            padding-left: theme('padding.8');
+            position: relative;
+
+            &:before {
+                font-family: 'Font Awesome 5 Pro';
+                width: theme('padding.6');
+                color: inherit;
+                position: absolute;
+                left: 0;
+            }
+        }
+    }
+    &-arrows {
+        li:before {
+            content: "\f30b";
+        }
+    }
+    &-checks {
+        li:before {
+            content: "\f00c";
+        }
+    }
+}
+
+.navigation {
+    @apply flex;
+    @apply items-center;
+    @apply justify-end;
+
+    a {
+        padding: theme('padding.2') theme('padding.3');
+        @apply rounded-md;
+        @apply transition-colors;
+        @apply duration-200;
+        @apply font-medium;
+        @apply text-base;
+        @apply mr-4;
+        @apply text-white;
+
+        &:hover {
+            background: theme('colors.red.700');
+            color: #fff;
+        }
+
+        &:last-of-type {
+            @apply mr-0;
+        }
+    }
+}
+
+.hero {
+    background-image: url(/themes/jda/images/pass-collage-2019.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50%;
+
+    &:after {
+        content: " ";
+        @apply block;
+        @apply absolute;
+        @apply inset-0;
+        background: url('/themes/peak/images/dots.png');
+    }
+
+    ul {
+        li {
+            margin-bottom: theme('margin.5');
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &.list-arrows, &.list-checks {
+            li {
+                &:before {
+                    color: theme('colors.red.700');
+                }
+            }
+        }
+    }
+    &-video {
+        &-wrapper {
+            &:after {
+                content: " ";
+                @apply block;
+                @apply absolute;
+                @apply inset-0;
+                background: url('/themes/peak/images/dots.png');
+            }
+        }
+    }
+}
+
+.button {
+    @apply px-5;
+    @apply py-2;
+    @apply text-white;
+    @apply inline-block;
+    @apply shadow-sm;
+    @apply rounded;
+    @apply bg-red-700;
+    @apply font-semibold;
+    @apply cursor-pointer;
+    @apply duration-300;
+    @apply transition-colors;
+
+    &:hover {
+        @apply bg-red-800;
+    }
+}
+
+@media (max-width: theme('screens.md')) {
+
+    .main-nav {
+        display: block;
+        position: fixed;
+        top: 8.6rem;
+        bottom: 0;
+        right: 0;
+        width: 80vw;
+        background: black;
+        @apply shadow-lg;
+        overflow-y: auto;
+        margin-right: -80vw;
+        transition: margin 300ms;
+
+        .navigation {
+            display: block;
+
+            a {
+                display: block;
+                margin: 0;
+                border-radius: 0;
+                font-size: theme('fontSize.xl');
+                color: white;
+                @apply py-6;
+                border-bottom: 1px solid theme('colors.gray.600');
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+        }
+    }
+
+    body.menu-open {
+        overflow-y: hidden;
+
+        .main-nav {
+            margin-right: 0;
+        }
+    }
+
+}
+
+.page {
+    &-header {
+        @apply relative;
+        background: theme('colors.gray.900') url(/themes/peak/images/page-banner.jpg) no-repeat 50%/cover;
+
+        &:before {
+            display: block;
+            content: " ";
+            @apply absolute;
+            @apply inset-0;
+            background: rgba(black, .4) url(/themes/peak/images/dots.png) repeat;
+        }
+    }
+}

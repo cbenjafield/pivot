@@ -35,6 +35,8 @@ Vue.component('add-element', require('./components/editor/pivot/AddElement.vue')
 Vue.component('create-contact-form', require('./components/contact/Create.vue').default);
 Vue.component('edit-contact-form', require('./components/contact/Edit.vue').default);
 
+Vue.component('article-parent', require('./components/articles/parent.vue').default);
+
 var fireBusEvent = (event, payload) => {
     window.bus.$emit(event, payload);
 };

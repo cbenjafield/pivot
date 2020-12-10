@@ -24,6 +24,7 @@ Route::resource('organisations', 'OrganisationController')
                         ->except(['edit', 'destroy']);
 
 
+Route::get('websites/{website}/articles/search', 'ArticleController@search')->name('articles.search');
 Route::resource('websites/{website}/articles', 'ArticleController');
 Route::put('websites/{website}/details', 'SiteController@updateDetails')->name('sites.details');
 Route::put('websites/{website}/paypal', 'SiteController@updatePayPal')->name('sites.paypal');
