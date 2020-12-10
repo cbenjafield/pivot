@@ -3,6 +3,7 @@
 /public/storage
 /public/themes/drive247/images
 /public/themes/peak/images
+/public/themes/jda/images
 /storage/*.key
 /vendor
 .env
