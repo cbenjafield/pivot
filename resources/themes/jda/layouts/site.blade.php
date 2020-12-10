@@ -23,7 +23,7 @@
         @include(Theme::partial('footer'))
     </div>
 
-    <script src="{{ asset(mix('js/site.js')) }}">
+    <script src="{{ asset(mix('js/site.js')) }}"></script>
 
 </body>
 </html>
