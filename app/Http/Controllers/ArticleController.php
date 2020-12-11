@@ -135,8 +135,10 @@ class ArticleController extends Controller
         ], 200);
     }
 
-    public function destroy(Article $article)
+    public function destroy($article)
     {
+        $article = Article::findOrFail($article);
+        
         $article->update([
             'status' => 'deleted',
         ]);
