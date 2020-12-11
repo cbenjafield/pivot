@@ -16,5 +16,7 @@ Route::get('/', 'WebsiteController@index');
 Route::post('contact/{form}', 'ContactController@submitForm');
 
 Route::get('xml-sitemap', 'SitemapController@xml');
+Route::get('xml-sitemap/pages', 'SitemapController@xmlPages');
+Route::get('xml-sitemap/posts', 'SitemapController@xmlPosts');
 
 Route::fallback('WebsiteController@article');

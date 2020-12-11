@@ -17,12 +17,39 @@ class SitemapController extends Controller
 
     public function xml()
     {
+        
+    }
+
+    public function xmlPages()
+    {
         $articles = request('website')
                             ->articles()
                             ->page()
+                            ->published()
                             ->orderBy('url', 'asc')
                             ->get();
 
+        $sitemap = $this->makeXmlSitemap($articles);
+
+        return $sitemap->toResponse(request());
+    }
+
+    public function xmlPosts()
+    {
+        $articles = request('website')
+                                ->articles()
+                                ->post()
+                                ->published()
+                                ->orderBy('url', 'asc')
+                                ->get();
+        
+        $sitemap = $this->makeXmlSitemap($articles);
+
+        return $sitemap->toResponse(request());
+    }
+
+    protected function makeXmlSitemap($articles)
+    {
         $sitemap = Sitemap::create();
 
         foreach($articles as $article) {
@@ -32,7 +59,7 @@ class SitemapController extends Controller
                                     ->setPriority(0.1));
         }
 
-        return $sitemap->toResponse(request());
+        return $sitemap;
     }
 
 }

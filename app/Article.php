@@ -57,6 +57,11 @@ class Article extends Model
         return $query->whereIn('type', ['page']);
     }
 
+    public function scopePost(Builder $query)
+    {
+        return $query->whereIn('type', ['post']);
+    }
+
     public function scopePublished(Builder $query)
     {
         return $query->where('status', 'published')
