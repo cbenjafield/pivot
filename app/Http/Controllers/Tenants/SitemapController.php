@@ -18,9 +18,29 @@ class SitemapController extends Controller
 
     public function xml()
     {
+        $lastPage = request('website')
+                            ->articles()
+                            ->page()
+                            ->published()
+                            ->orderBy('updated_at', 'desc')
+                            ->first();
+        
+        $lastPost = request('website')
+                            ->articles()
+                            ->post()
+                            ->published()
+                            ->orderBy('updated_at', 'desc')
+                            ->first();
+
         $sitemapIndex = SitemapIndex::create()
-                                ->add('/xml-sitemap/pages')
-                                ->add('/xml-sitemap/posts');
+                                ->add(
+                                    Sitemap::create('/xml-sitemap/pages')
+                                                ->setLastModificationDate($lastPage->updated_at ?? Carbon::now())
+                                )
+                                ->add(
+                                    Sitemap::create('/xml-sitemap/posts')
+                                                ->setLastModificationDate($lastPost->updated_at ?? Carbon::now())
+                                );
         
         return $sitemapIndex->toResponse(request());
     }
