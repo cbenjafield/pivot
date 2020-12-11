@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Tenants;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Sitemap;
 use Spatie\Sitemap\SitemapIndex;
 use Spatie\Sitemap\Tags\Url;
 
