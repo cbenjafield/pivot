@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Tenants;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
