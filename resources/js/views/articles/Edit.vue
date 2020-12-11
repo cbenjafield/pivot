@@ -39,7 +39,7 @@
                     </button>
                 </span>
                 <span class="inline-flex rounded-md shadow-sm">
-                    <button type="button" class="flex w-full items-center px-6 py-2 border border-gray-300 text-base leading-6 font-medium rounded-md text-red-700 bg-white hover:text-red-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150">
+                    <button type="button" class="flex w-full items-center px-6 py-2 border border-gray-300 text-base leading-6 font-medium rounded-md text-red-700 bg-white hover:text-red-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" @click.prevent="deleteArticle">
                         <i class="far fa-trash mr-2"></i> Delete
                     </button>
                 </span>
@@ -110,6 +110,12 @@ export default {
                     }
                 }
             });
+        },
+
+        deleteArticle() {
+            axios.delete(`/websites/${this.article.site_id}/articles/${this.article.id}`)
+                    .then(response => window.location.href=`/websites/${this.article.site_id}/articles`)
+                    .catch(error => alert('An error occurred.'))
         }
     }
 }

@@ -137,6 +137,12 @@ class ArticleController extends Controller
 
     public function destroy(Article $article)
     {
-        
+        $article->update([
+            'status' => 'deleted',
+        ]);
+
+        return response()->json([
+            'article' => $article
+        ], 200);
     }
 }
