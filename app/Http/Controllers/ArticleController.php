@@ -134,4 +134,9 @@ class ArticleController extends Controller
             'articles' => $articles,
         ], 200);
     }
+
+    public function destroy(Article $article)
+    {
+        
+    }
 }

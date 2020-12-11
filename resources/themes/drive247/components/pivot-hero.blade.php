@@ -1,7 +1,7 @@
 <div class="hero py-32 bg-gray-900 text-white relative">
     <div class="hero-video-wrapper absolute left-0 bottom-0 h-full w-full overflow-hidden hidden lg:block">
         <video class="absolute bottom-0 z-0 w-full" autoplay loop muted id="herovideo">
-            <source src="{{ Theme::url('storage/media/9a1f2e3e-b061-44cb-9648-985790d62dd2.mp4') }}" type="video/mp4">
+            <source src="{{ Theme::url('images/drive247-bg-video.mp4') }}" type="video/mp4">
         </video>
     </div>
 
