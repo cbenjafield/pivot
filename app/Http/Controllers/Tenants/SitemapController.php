@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tenants;
 
 use App\Http\Controllers\Controller;
+use App\Traits\HasTheme;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Spatie\Sitemap\Tags\Sitemap as SitemapTag;
