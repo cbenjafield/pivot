@@ -142,4 +142,9 @@ class Article extends Model
                 $when->whereNotIn('id', [$article]);
             });
     }
+
+    public function children()
+    {
+        return $this->hasMany(Article::class, 'parent_id');
+    }
 }
