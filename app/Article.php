@@ -145,6 +145,6 @@ class Article extends Model
 
     public function children()
     {
-        return $this->hasMany(Article::class, 'parent_id');
+        return $this->hasMany(Article::class, 'parent_id')->with('children');
     }
 }
