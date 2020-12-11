@@ -38,6 +38,11 @@ class Theme
         ]);
     }
 
+    public function makeSitemapChildrenListing($articles)
+    {
+        return view($this->website->themePath('sitemap.listing'), compact('articles'))->render();
+    }
+
     public function image(string $image)
     {
         return asset("themes/{$this->website->theme}/images/{$image}");
