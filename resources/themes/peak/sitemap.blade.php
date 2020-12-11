@@ -14,6 +14,7 @@
             <div>
                 <h2 class="text-2xl text-gray-900 font-semibold">Pages</h2>
                 <div class="mt-6">
+                    <a href="{{ Theme::url('/') }}">Home</a>
                     {!! $pages !!}
                 </div>
             </div>
