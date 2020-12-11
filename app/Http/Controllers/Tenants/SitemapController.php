@@ -49,8 +49,7 @@ class SitemapController extends Controller
 
     protected function makeChildrenListing($articles)
     {
-        return view('sitemap.listing', compact('articles'))
-                        ->render();
+        return $this->view('sitemap.listing', compact('articles'))->render();
     }
 
     public function xml()
