@@ -1,4 +1,4 @@
-<ul class="list-disc space-y-3 pl-6">
+<ul class="list-disc space-y-3 pl-6 mt-5">
     @foreach($articles as $article)
     <li>
         <a href="{{ $article->url }}">{{ ! $article->isHome() ? $article->title : 'Home' }}</a>
