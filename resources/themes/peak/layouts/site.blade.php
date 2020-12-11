@@ -9,9 +9,9 @@
     @else
     <title>{{ $article->title ?? 'Home' }} - {{ $website->title ?? 'Driving School' }}</title>
     @endif
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://kit.fontawesome.com">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800;461&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/f2f28012e7.js" crossorigin="anonymous" defer></script>
     <link href="{{ asset(mix('css/site.css')) }}" rel="stylesheet">
     <link href="{{ Theme::styles() }}" rel="stylesheet">
