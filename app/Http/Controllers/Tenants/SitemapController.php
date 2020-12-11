@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Tenants;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Spatie\Sitemap\Tags\Sitemap;
+use Spatie\Sitemap\Tags\SitemapTag;
+use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\SitemapIndex;
 use Spatie\Sitemap\Tags\Url;
 
@@ -35,11 +36,11 @@ class SitemapController extends Controller
 
         $sitemapIndex = SitemapIndex::create()
                                 ->add(
-                                    Sitemap::create('/xml-sitemap/pages')
+                                    SitemapTag::create('/xml-sitemap/pages')
                                                 ->setLastModificationDate($lastPage->updated_at ?? Carbon::now())
                                 )
                                 ->add(
-                                    Sitemap::create('/xml-sitemap/posts')
+                                    SitemapTag::create('/xml-sitemap/posts')
                                                 ->setLastModificationDate($lastPost->updated_at ?? Carbon::now())
                                 );
         
