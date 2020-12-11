@@ -12,10 +12,44 @@ use Spatie\Sitemap\Tags\Url;
 
 class SitemapController extends Controller
 {
-    
+    use HasTheme;
+
     public function index()
     {
+        $pages = $this->getPages(request('website'));
+        $posts = $this->getPosts(request('website'));
 
+        return $this->view('sitemap', compact('pages', 'posts'));
+    }
+
+    protected function getPages($website)
+    {
+        return $this->makeChildrenListing(request('website')
+                ->articles()
+                ->page()
+                ->with('children')
+                ->root()
+                ->published()
+                ->orderBy('title', 'asc')
+                ->get());
+    }
+
+    protected function getPosts($website)
+    {
+        return $this->makeChildrenListing(request('website')
+                ->articles()
+                ->post()
+                ->with('children')
+                ->root()
+                ->published()
+                ->orderBy('title', 'asc')
+                ->get());
+    }
+
+    protected function makeChildrenListing($articles)
+    {
+        return view('sitemap.listing', compact('articles'))
+                        ->render();
     }
 
     public function xml()
