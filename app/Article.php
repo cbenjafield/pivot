@@ -147,4 +147,11 @@ class Article extends Model
     {
         return $this->hasMany(Article::class, 'parent_id')->with('children');
     }
+
+    public function isHome()
+    {
+        $website = request()->has('website') ? request('website') : $this->website;
+
+        return $this->id === $website->home_page_id;
+    }
 }
