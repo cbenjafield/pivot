@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenants;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\SitemapIndex;
 use Spatie\Sitemap\Tags\Url;
 
 class SitemapController extends Controller
@@ -17,7 +18,11 @@ class SitemapController extends Controller
 
     public function xml()
     {
+        $sitemapIndex = SitemapIndex::create()
+                                ->add('/xml-sitemap/pages')
+                                ->add('/xml-sitemap/posts');
         
+        return $sitemapIndex->toResponse(request());
     }
 
     public function xmlPages()
