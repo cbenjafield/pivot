@@ -150,7 +150,7 @@ class Article extends Model
 
     public function isHome()
     {
-        $website = request()->has('website') ? request('website') : $this->website;
+        $website = request()->filled('website') ? request('website') : $this->website;
 
         return $this->id === $website->home_page_id;
     }
