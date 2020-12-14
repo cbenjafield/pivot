@@ -17,7 +17,7 @@ class Media extends Model
     ];
 
     protected $with = [
-        'website',
+        'site',
     ];
 
     public function user()
