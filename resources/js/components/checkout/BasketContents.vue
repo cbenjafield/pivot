@@ -20,7 +20,6 @@
                 <div class="bg-gray-100 flex items-center justify-center p-4 rounded-md text-lg text-gray-500" v-else>
                     <div class="w-full text-center">
                         <p class="mb-3">There are no items in your basket.</p>
-                        <a href="/prices" class="text-blue-600 focus:text-blue-700 transition duration-150 ease-in-out text-base">Visit our prices <i class="far fa-long-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
