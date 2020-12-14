@@ -106,6 +106,8 @@ class ArticleController extends Controller
                 'status' => $request->status ?? 'drafted',
                 'type' => $request->type ?? 'page',
                 'parent_id' => $request->parent_id,
+                'seo_title' => $request->seo_title,
+                'description' => $request->description,
             ]
         ));
 

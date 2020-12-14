@@ -82,11 +82,11 @@ const app = new Vue({
             });
         },
         saveDraft() {
-            document.querySelector('#status').value = 'draft';
+            document.querySelector('#status').value = 'drafted';
             this.createArticle();
         },
         savePublish() {
-            document.querySelector('#status').value = 'publish';
+            document.querySelector('#status').value = 'published';
             this.createArticle();
         },
         createArticle() {

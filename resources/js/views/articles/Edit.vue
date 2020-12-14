@@ -48,12 +48,26 @@
             <div class="w-full mb-4">
                 <article-parent :site="article.site_id" :chosen-parent="article.parent" :article="article.id" v-model="parent_id" />
             </div>
+
+            <div class="w-full mb-4 mt-4">
+                <h3 class="text-lg font-semibold text-gray-500 mb-4">SEO Details</h3>
+
+                <article-seo-title :site="article.site_id" v-model="seo_title" />
+                <article-seo-description :site="article.site_id" v-model="description" class="mt-3" />
+            </div>
         </div>
     </div>
 </div>
 </template>
 <script>
+import ArticleSeoTitle from '../../components/articles/title'
+import ArticleSeoDescription from '../../components/articles/description'
+
 export default {
+    components: {
+        ArticleSeoTitle,
+        ArticleSeoDescription,
+    },
     props: [
         'article',
         'action'
@@ -67,7 +81,9 @@ export default {
             errors: [],
             isSaving: false,
             status: this.article.status,
-            parent_id: this.article.parent_id
+            parent_id: this.article.parent_id,
+            seo_title: this.article.seo_title,
+            description: this.article.description,
         };
     },
     methods: {
@@ -96,7 +112,9 @@ export default {
                 slug: this.slug,
                 content: this.$refs.ArticleEditor.getContent(),
                 status: this.status,
-                parent_id: this.parent_id
+                parent_id: this.parent_id,
+                description: this.description,
+                seo_title: this.seo_title
             }).then(response => {
                 if(response.status == 200) {
                     this.isSaving = false;
