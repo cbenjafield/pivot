@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Sites\CreateRequest;
 use App\Http\Requests\Sites\UpdateRequest;
 use App\Site;
+use App\Theme;
 use App\Traits\HasUrl;
 use App\Traits\ResourceViews;
 use Illuminate\Http\Request;
@@ -67,8 +68,9 @@ class SiteController extends Controller
     public function show(Site $website)
     {
         $rootPages = $website->pages()->root()->published()->get();
+        $themes = Theme::orderBy('name', 'asc')->get();
         $website->checkHealth();
-        return $this->view('show', compact('website', 'rootPages'));
+        return $this->view('show', compact('website', 'rootPages', 'themes'));
     }
 
     /**
@@ -89,10 +91,12 @@ class SiteController extends Controller
     {
         $this->validate(request(), [
             'home_page_id' => ['required', 'integer', 'exists:articles,id'],
+            'theme' => ['required', 'string', 'exists:themes,name'],
         ]);
 
         $website->update(request()->only([
-            'home_page_id'
+            'home_page_id',
+            'theme',
         ]));
 
         return back()
