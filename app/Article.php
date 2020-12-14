@@ -154,4 +154,13 @@ class Article extends Model
 
         return $this->id === $website->home_page_id;
     }
+
+    public function seoTitle()
+    {
+        if(empty($this->seo_title)) {
+            return $this->title . ' - ' . request('website')->title;
+        } else {
+            return $this->seo_title;
+        }
+    }
 }

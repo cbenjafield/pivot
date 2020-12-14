@@ -7,7 +7,10 @@
     @hasSection('title')
     <title>@yield('title') - {{ $website->title ?? 'Driving School' }}</title>
     @else
-    <title>{{ $article->title ?? 'Home' }} - {{ $website->title ?? 'Driving School' }}</title>
+    <title>{{ $article->seoTitle() }}</title>
+    @endif
+    @if(isset($article) && !empty($article->description))
+    <meta name="description" content="{{ $article->description }}">
     @endif
     <link rel="preconnect" href="https://kit.fontawesome.com">
     <script src="https://kit.fontawesome.com/f2f28012e7.js" crossorigin="anonymous" defer></script>
