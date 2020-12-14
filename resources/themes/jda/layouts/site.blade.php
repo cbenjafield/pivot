@@ -9,6 +9,7 @@
     @else
     <title>{{ $article->title ?? 'Home' }} - {{ $website->title ?? 'Driving School' }}</title>
     @endif
+    <link rel="preconnect" href="https://kit.fontawesome.com">
     <script src="https://kit.fontawesome.com/f2f28012e7.js" crossorigin="anonymous" defer></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">

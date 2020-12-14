@@ -48,6 +48,11 @@ class Theme
         return asset("themes/{$this->website->theme}/images/{$image}");
     }
 
+    public function media($path = null)
+    {
+        return $this->url("storage/media/" . $path);
+    }
+
     public function url($path = null)
     {
         return ($this->website->uses_https)

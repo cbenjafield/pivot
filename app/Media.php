@@ -12,7 +12,12 @@ class Media extends Model
     protected $guarded = [];
 
     protected $appends = [
-        'url'
+        'url',
+        'website_url',
+    ];
+
+    protected $with = [
+        'website',
     ];
 
     public function user()
@@ -25,9 +30,19 @@ class Media extends Model
         return Storage::disk('media')->url($this->name);
     }
 
+    public function websiteUrl()
+    {
+        return "{$this->site->domain()}/storage/media/$this->name";
+    }
+
     public function getUrlAttribute()
     {
         return $this->url();
+    }
+
+    public function getWebsiteUrlAttribute()
+    {
+        return $this->websiteUrl();
     }
 
     public function site()
