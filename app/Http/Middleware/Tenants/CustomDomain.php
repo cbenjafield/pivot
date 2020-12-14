@@ -22,14 +22,16 @@ class CustomDomain
 
         $website = Site::where('tld', $domain)->firstOrFail();
 
-        if(! $request->secure() && $website->uses_https) {
-            return redirect()->secure($request->getRequestUri());
-        }
+        if(! in_array($request->ip(), ['192.168.10.10', '192.168.10.1'])) {
+            if(! $request->secure() && $website->uses_https) {
+                return redirect()->secure($request->getRequestUri());
+            }
 
-        $start = substr($request->getHost(), 0, 3);
+            $start = substr($request->getHost(), 0, 3);
 
-        if($start != 'www' && $website->uses_www) {
-            return redirect()->to($website->domain() . $request->getRequestUri());
+            if($start != 'www' && $website->uses_www) {
+                return redirect()->to($website->domain() . $request->getRequestUri());
+            }
         }
 
         // Append the domain and site to the request object
