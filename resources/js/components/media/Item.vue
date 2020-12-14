@@ -20,7 +20,7 @@
             </div>
             <div class="mt-4">
                 <h4 class="font-medium text-gray-600 text-xs mb-2">URL</h4>
-                <a :href="file.url" target="_blank" class="block text-indigo-600 truncate pr-10">{{ file.url }}</a>
+                <a :href="file.website_url" target="_blank" class="block text-indigo-600 truncate pr-10">{{ file.url }}</a>
             </div>
             <div class="mt-4">
                 <span class="inline-flex rounded-md shadow-sm">
