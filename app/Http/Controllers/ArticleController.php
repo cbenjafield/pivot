@@ -137,7 +137,7 @@ class ArticleController extends Controller
         ], 200);
     }
 
-    public function destroy($article)
+    public function destroy($website, $article)
     {
         $article = Article::findOrFail($article);
         
