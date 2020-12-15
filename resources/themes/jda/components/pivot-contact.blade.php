@@ -25,7 +25,7 @@
                 </div>
 
                 <span class="shadow-sm rounded-md overflow-hidden">
-                    <button type="submit" class="cursor-pointer px-6 py-2 bg-teal-600 text-white font-medium rounded-md hover:bg-teal-700 duration-200 transition-colors">
+                    <button type="submit" class="cursor-pointer px-6 py-2 bg-red-600 text-white font-medium rounded-md hover:bg-red-700 duration-200 transition-colors">
                         Send Message
                     </button>
                 </span>
