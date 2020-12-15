@@ -18,6 +18,10 @@ class Article extends Model
         'published_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'full_url',
+    ];
+
     protected static function booted()
     {
         static::saving(function ($article) {
@@ -100,6 +104,11 @@ class Article extends Model
         $url = implode('/', $parentParts);
 
         $this->url = $url;
+    }
+
+    public function getFullUrlAttribute()
+    {
+        return $this->site->url($this->url);
     }
 
     public function getParentsAttribute()

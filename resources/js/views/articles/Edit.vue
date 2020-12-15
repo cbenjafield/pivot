@@ -46,7 +46,7 @@
             </div>
 
             <div class="w-full mb-4 flex items-center">
-                <a :href="article.url" class="flex w-full items-center px-6 py-2 border border-gray-300 text-base leading-6 font-medium rounded-md text-red-700 bg-white hover:text-red-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" target="_blank">
+                <a :href="article.full_url" class="flex w-full items-center px-6 py-2 border border-gray-300 text-base leading-6 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150" target="_blank">
                     <span>View page on website</span>
                 </a>
             </div>

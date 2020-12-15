@@ -140,6 +140,11 @@ class Site extends Model
         ]);
     }
 
+    public function url($path)
+    {
+        return $this->domain() . $path;
+    }
+
     /**
      * Return the website's theme path.
      * 
