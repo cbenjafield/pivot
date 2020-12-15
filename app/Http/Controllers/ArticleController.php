@@ -141,12 +141,10 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($article);
         
-        $article->update([
-            'status' => 'deleted',
-        ]);
+        $article->delete();
 
         return response()->json([
-            'article' => $article
+           
         ], 200);
     }
 }
