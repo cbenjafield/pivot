@@ -55,6 +55,12 @@
                 <article-seo-title :site="article.site_id" v-model="seo_title" />
                 <article-seo-description :site="article.site_id" v-model="description" class="mt-3" />
             </div>
+
+            <div class="w-full mb-4 mt-4">
+                <h3 class="text-lg font-semibold text-gray-500 mb-4">Custom Fields</h3>
+
+                <article-meta v-model="meta" />
+            </div>
         </div>
     </div>
 </div>
@@ -62,11 +68,13 @@
 <script>
 import ArticleSeoTitle from '../../components/articles/title'
 import ArticleSeoDescription from '../../components/articles/description'
+import ArticleMeta from '../../components/editor/pivot/Meta'
 
 export default {
     components: {
         ArticleSeoTitle,
         ArticleSeoDescription,
+        ArticleMeta,
     },
     props: [
         'article',
@@ -84,6 +92,7 @@ export default {
             parent_id: this.article.parent_id,
             seo_title: this.article.seo_title,
             description: this.article.description,
+            meta: this.article.meta,
         };
     },
     methods: {
@@ -114,7 +123,8 @@ export default {
                 status: this.status,
                 parent_id: this.parent_id,
                 description: this.description,
-                seo_title: this.seo_title
+                seo_title: this.seo_title,
+                meta: this.meta,
             }).then(response => {
                 if(response.status == 200) {
                     this.isSaving = false;

@@ -85,7 +85,7 @@ class ArticleController extends Controller
      */
     public function show(Site $website, Article $article)
     {
-        $article->load('parent');
+        $article->load(['parent', 'meta']);
         
         return $this->view('edit', compact('website', 'article'));
     }
@@ -110,6 +110,10 @@ class ArticleController extends Controller
                 'description' => $request->description,
             ]
         ));
+
+        if($request->has('meta') && is_array($request->meta)) {
+            $article->processMeta($request->meta);
+        }
 
         return response()->json([], 200);
     }

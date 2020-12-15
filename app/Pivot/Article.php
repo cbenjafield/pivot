@@ -54,6 +54,7 @@ class Article
     public function findFromRoute()
     {
         return request('website')->pages()
+                                        ->with('meta')
                                         ->where('url', request()->path())
                                         ->firstOrFail();
     }

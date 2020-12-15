@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Articles\Meta;
 use App\Pivot\Facades\Theme;
 use App\Traits\DisplaysContent;
 use Illuminate\Database\Eloquent\Builder;
@@ -164,5 +165,28 @@ class Article extends Model
         } else {
             return $this->seo_title;
         }
+    }
+
+    public function processMeta($meta)
+    {
+        // Delete previous meta.
+        $this->meta()->delete();
+
+        // Create the new meta.
+        foreach($meta as $field) {
+            $this->meta()->create([
+                'key' => $field['key'],
+                'value' => $field['value'],
+            ]);
+        }
+    }
+
+    public function getMetaField($key)
+    {
+        if(! $this->relationLoaded('meta')) {
+            $this->load('meta');
+        }
+
+        return optional($this->meta->where('key', $key)->first())->value;
     }
 }
