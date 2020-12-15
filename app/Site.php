@@ -140,9 +140,9 @@ class Site extends Model
         ]);
     }
 
-    public function url($path)
+    public function url($path = null)
     {
-        return $this->domain() . $path;
+        return $this->domain() . (!empty($path) ? '/' . $path : '');
     }
 
     /**
