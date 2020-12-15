@@ -141,7 +141,9 @@ export default {
                         headingText: block.headingText,
                         bullets: block.bullets,
                         backgroundImage: block.backgroundImage,
-                        classNames: block.classNames
+                        classNames: block.classNames,
+                        buttonText: block.buttonText,
+                        buttonHref: block.buttonHref,
                     };
                 }
 
