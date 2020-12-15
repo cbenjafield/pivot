@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+    <div class="max-w-7xl flex justify-center">
+        <div class="max-w-lg">
+            <div class="rounded-md shadow overflow-hidden">
+                <div class="p-3 bg-white border-b border-gray-200">{{ __('Register') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

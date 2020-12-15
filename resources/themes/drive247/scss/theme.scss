@@ -73,8 +73,10 @@
         &-wrapper {
             &:after {
                 content: " ";
-                @apply block absolute inset-0;
-                background: url(/storage/media/84c0edad-9529-4918-bedb-c26014414a3e.png);
+                @apply block;
+                @apply absolute;
+                @apply inset-0;
+                background: url(/themes/drive247/images/dots.png);
             }
         }
     }
