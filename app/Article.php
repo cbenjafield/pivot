@@ -23,7 +23,9 @@ class Article extends Model
             if($article->status == 'published' && empty($article->published_at)) {
                 $article->published_at = now();
             }
-            $article->makeUrl();
+            if(! in_array($article->status, ['deleted'])) {
+                $article->makeUrl();
+            }
         });
     }
 
