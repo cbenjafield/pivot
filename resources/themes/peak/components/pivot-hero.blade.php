@@ -9,8 +9,8 @@
         </ul>
         @endif
 
-        <a href="{{ url('areas-we-cover') }}" class="mt-8 text-xl text-white bg-teal-500 rounded shadow-sm px-6 py-3 inline-block font-bold duration-300 transition-colors hover:bg-teal-800">
-            Find out more <i class="far fa-long-arrow-right ml-2"></i>
+        <a href="{{ $block->buttonHref ?? '/prices' }}" class="mt-8 text-xl text-white bg-teal-500 rounded shadow-sm px-6 py-3 inline-block font-bold duration-300 transition-colors hover:bg-teal-800">
+            {{ $block->buttonText ?? 'Book Now' }} <i class="far fa-long-arrow-right ml-2"></i>
         </a>
     </div>
 </div>
