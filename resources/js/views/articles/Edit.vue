@@ -147,9 +147,11 @@ export default {
         },
 
         deleteArticle() {
-            axios.delete(`/websites/${this.article.site_id}/articles/${this.article.id}`)
-                    .then(response => window.location.href=`/websites/${this.article.site_id}/articles`)
-                    .catch(error => alert('An error occurred.'))
+            if(confirm('Are you sure you want to delete this page?')) {
+                axios.delete(`/websites/${this.article.site_id}/articles/${this.article.id}`)
+                        .then(response => window.location.href=`/websites/${this.article.site_id}/articles`)
+                        .catch(error => alert('An error occurred.'))
+            }
         }
     }
 }
