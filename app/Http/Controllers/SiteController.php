@@ -102,4 +102,14 @@ class SiteController extends Controller
         return back()
                     ->with('success', 'Successfully saved.');
     }
+
+    public function updatePayPal(Site $website)
+    {
+        $website->update([
+            'paypal_client_id' => request('paypal_client_id'),
+            'paypal_client_secret' => request('paypal_client_secret'),
+        ]);
+
+        return back()->with('success', 'Successfully saved.');
+    }
 }
