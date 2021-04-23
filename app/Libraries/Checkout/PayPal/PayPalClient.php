@@ -17,7 +17,7 @@ class PayPalClient
     {
         $credentials = request('website')->paypalCredentials();
 
-        return new SandboxEnvironment(
+        return new ProductionEnvironment(
             $credentials['client_id'],
             $credentials['secret']
         );
